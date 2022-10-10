@@ -1,1 +1,1 @@
-# sugar-cosmetics-react
+# sugar-cosmetics-clone-with react
