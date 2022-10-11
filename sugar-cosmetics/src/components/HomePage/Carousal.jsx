@@ -13,7 +13,7 @@ function ControlledCarousel() {
  
   return (
     <>
-    <Carousel interval={2000} activeIndex={index} onSelect={handleSelect}>
+    <Carousel style={{marginTop:"00px",positon:"static"}} interval={2000} activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
         <img
           className="d-block w-100"
