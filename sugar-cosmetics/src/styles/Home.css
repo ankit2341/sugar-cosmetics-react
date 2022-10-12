@@ -1,0 +1,45 @@
+.BestSellers{
+    width:100%;
+    height: 608px;
+     background: url(https://media.sugarcosmetics.com/upload/homePageBackGroundTexture.jpg); 
+}
+.titleBS{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+    width: 250px;
+    margin: auto;
+
+}
+.hr_tag{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+.CardCrousel{
+    display: flex;
+    width: 85%;
+    margin: auto;
+    margin-top: 20px;
+    height: 480px;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+*{
+    font-family: "Roboto",sans-serif;
+}
+.wishlist svg :hover{
+    fill: red;
+}
+.wishlist{
+    width:40px;
+    height:40px;
+    border-radius:5px;
+    border:2px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:center
+}
