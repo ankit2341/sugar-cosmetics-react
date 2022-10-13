@@ -76,23 +76,40 @@ export default function SwiperVideos() {
         modules={[EffectCards]}
         className="mySwiper" 
       >
-        <SwiperSlide>
-            <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <SwiperSlide >
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/11/1665491445-phqugwak/watermarked/540/WhatsAppVideo2022-10-11at5.29.57PM1.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
+
         <SwiperSlide>
-        <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/11/1665493086-gcxeskvq/watermarked/540/WhatsAppVideo2022-10-11at6.15.56PM.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
+
         <SwiperSlide>
-        <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/11/1665492500-vohfmcja/watermarked/540/WhatsAppVideo2022-10-11at6.16.01PM.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
+
         <SwiperSlide>
-        <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/3/1664796426-engtdrkq/watermarked/540/WhatsAppVideo2022-10-03at4.52.52PM.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
+        
         <SwiperSlide>
-        <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/3/1664797725-ipvozena/watermarked/540/WhatsAppVideo2022-10-03at4.52.57PM.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
+
         <SwiperSlide>
-        <img src="https://i.postimg.cc/1t0bzWw7/sc2.jpg" alt="" />
+        <video width="750" height="500" controls >
+        <source src="https://cdn4.fireworktv.com/medias/2022/10/3/1664797925-hokacjms/watermarked/540/WhatsAppVideo2022-10-03at4.52.59PM.mp4" type="video/mp4"/>
+        </video>
         </SwiperSlide>
       </Swiper>
         </Modal.Body>

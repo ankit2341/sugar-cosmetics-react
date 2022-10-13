@@ -3,9 +3,9 @@ import CardCarousel from './CardCarousel';
 
 
 
-function BestsellersCardCarousel({BestSellersData}) {
+function FourCardsCarousel({BestSellersData}) {
   return (
-    <Carousel slide={false} border="1px solid red">
+    <Carousel variant="dark" slide={false} border="1px solid red">
       <Carousel.Item>
         <div className='CardCrousel'>
         <CardCarousel src1={BestSellersData[0].image_link} text={BestSellersData[0].name} price={BestSellersData[0].price}/>
@@ -37,4 +37,4 @@ function BestsellersCardCarousel({BestSellersData}) {
   );
 }
 
-export default BestsellersCardCarousel;
+export default FourCardsCarousel;
