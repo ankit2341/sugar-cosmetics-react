@@ -20,7 +20,7 @@ export default function Navbar(){
         <div className={colorChange ?"Navbar_main_fixed" :"Navbar_main"}  >
          <div className="Navbar_first">
             <div style={{marginLeft:"0xp"}}>
-            <img src="https://i.postimg.cc/440XRksF/Capture.jpg" alt="sugar" />
+            <Link to="/"><img src="https://i.postimg.cc/440XRksF/Capture.jpg" alt="sugar" /></Link>
             </div>
 
             <div style={{width:"700px",height:"40px",marginLeft:"0px"}}>

@@ -1,5 +1,7 @@
+import FinalRegisterLoginPage from "../components/RegisterLogin/FinalRegisterLoginPage";
+
 export default function RegisterLogin(){
     return (
-        <h1>register</h1>
+        <FinalRegisterLoginPage/>
     )
 }
