@@ -93,3 +93,26 @@
     height: 45px;
     background-color: #141414;
 }
+.navmakeup{
+    position: relative;
+}
+.navmakeup+div{
+    display: none;
+}
+.navmakeup:hover+div{
+    display: block;
+    width: 50%;
+    position: absolute;
+    z-index: 10;
+    margin-top: 440px;
+    margin-left: 10px;
+    border: 1px solid;
+    height:400px;
+    background-color: aqua;
+}
+.navmakeup_1:hover{
+    display: block;
+    position: absolute;
+    padding: 10px;
+}
+

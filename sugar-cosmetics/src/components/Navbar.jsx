@@ -45,15 +45,14 @@ export default function Navbar(){
          </div>
 
          <div className="Navbar_second">
-            <div>
-            <Link to="/">Makeup</Link>
+            <div className="menucontainer">
+              <Link className="navmakeup" to="/">Makeup</Link>
             <Link to="/">Brushes</Link>
             <Link to="/">Skincare</Link>
             <Link to="/">Gifting</Link>
             <Link to="/">Blog</Link>
             <Link to="/">Offers</Link>
-            <Link to="/">Stores</Link>
-            <Link to="/">Diwali Gifting</Link>
+            <Link className="navoffers" to="/">Stores</Link>
             </div>
          </div>
         </div>

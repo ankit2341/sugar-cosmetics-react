@@ -7,6 +7,7 @@ export default function AllRoutes(){
         <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/login-register" element={<RegisterLogin/>}></Route>
+            <Route path="/results" element></Route>
         </Routes>
     )
 }
