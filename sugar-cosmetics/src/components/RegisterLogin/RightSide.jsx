@@ -3,6 +3,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import React from "react";
+import { authentification } from "../../firebase";
+import { RecaptchaVerifier,signInWithPhoneNumber } from "firebase/auth";
+
 
 export default function RightSide() {
   const [otpentry, setotpentry] = useState("");
@@ -10,6 +13,49 @@ export default function RightSide() {
   const [enterotp, setenterotp] = useState(false);
   const [signup, setsignup] = useState(false);
   const [cheked, setchecked] = useState(true);
+
+  function checkrecaptcha(){
+
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible',
+      'callback': (response) => {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+      }
+    }, authentification);
+
+  }
+
+  function requestotp(){
+    let phoneNumber=`+91${mnumber}`;
+    console.log(phoneNumber)
+    setenterotp(true);
+    checkrecaptcha();
+    let appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(authentification,phoneNumber,appVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult=confirmationResult;
+      alert("OTP Sent")
+    }).catch((error) => {
+      console.log(error);
+      setenterotp(false);
+      alert("Error Sending OTP");
+    });
+  }
+
+  function verifyotp(){
+    let confirmationResult=window.confirmationResult;
+    
+    confirmationResult.confirm(otpentry).then((result) => {
+      // User signed in successfully.
+      const user = result.user;
+      alert("signed in")
+      // ...
+    }).catch((error) => {
+      // User couldn't sign in (bad verification code?)
+      // ...
+    });
+    
+  }
 
   if (enterotp) {
     return (
@@ -130,9 +176,9 @@ export default function RightSide() {
             necessary to make the purchase process faster and easier.
           </p>
         </div>
-        {otpentry.length == 0 ? (
+        {otpentry.length != 6 ? (
           <div>
-            <button
+            <button 
               disabled={true}
               style={{
                 padding: "10px 25px",
@@ -148,7 +194,7 @@ export default function RightSide() {
           </div>
         ) : (
           <div>
-            <button
+            <button onClick={verifyotp}
               style={{
                 padding: "10px 25px",
                 fontSize: "14px",
@@ -329,7 +375,7 @@ export default function RightSide() {
         </div>
       ) : (
         <div>
-          <button
+          <button onClick={requestotp}
             style={{
               padding: "10px 25px",
               fontSize: "14px",
@@ -387,6 +433,7 @@ export default function RightSide() {
       <div style={{ color: "lightgray" }}>
         ___________________________________________________________________________________________________
       </div>
+      <div id="recaptcha-container"></div>
       <div>
         <p
           style={{ fontSize: "12px", paddingTop: "15px", paddingLeft: "15px" }}
