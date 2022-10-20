@@ -75,3 +75,11 @@
   .footersvg svg :hover{
        fill: #ffffff;
   }
+  .inputnumber_otp::-webkit-outer-spin-button,
+  .inputnumber_otp::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputnumber_otp{
+    -moz-appearance: textfield;
+}
