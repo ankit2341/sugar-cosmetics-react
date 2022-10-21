@@ -1,10 +1,12 @@
 import "../styles/Navbar.css";
 import { NavbarInput, NavbarLoginRegister } from "./NavbarComponents/NavbarC";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Appcontext } from "../context/AppContext";
 
 export default function Navbar() {
   const [colorChange, setColorchange] = useState(false);
+
   const changeNavbarColor = () => {
     if (window.scrollY >= 110) {
       setColorchange(true);

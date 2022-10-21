@@ -15,6 +15,8 @@ import Footer from "../components/Footer";
 import ShukarSugar from "../components/HomePage/ShukarSugar";
 import Toppicks from "../components/HomePage/Toppicks";
 import Gifting from "../components/HomePage/Gifting";
+import { useContext, useState } from "react";
+import { Appcontext } from "../context/AppContext";
 
 let Hotdealsdata = [
   "https://d32baadbbpueqt.cloudfront.net/Homepage/ee7aec73-2712-4b13-b979-8af7326e6219.jpg",
@@ -26,6 +28,70 @@ let Hotdealsdata = [
 ];
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+ const {Loginstate}=useContext(Appcontext);
+  console.log(Loginstate)
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div
+          style={{
+            width: "100%",
+            height: "150px",
+            display: "flex",
+            marginTop: "150px",
+            marginBottom: "40px",
+            alignItems: "center",
+            justifyContent: "center",
+            background:
+              "url(https://media.sugarcosmetics.com/upload/homePageBackGroundTexture.jpg)",
+          }}
+        >
+          <div className="hr_tag">
+            <h4 style={{ color: "#FC2779" }}>───</h4>
+          </div>
+          <div>
+            <h5 style={{ color: "#ffffff", fontWeight: "bold" }}>
+              BESTSELLERS
+            </h5>
+          </div>
+          <div className="hr_tag">
+            <h4 style={{ color: "#FC2779" }}>───</h4>
+          </div>
+        </div>
+        <TitleForall titlename={"HOT DEALS"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"JUST IN"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"SHUKAR HAIN,SUGAR HAIN"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"TOP PICKS"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"GIFTING"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <div
+          style={{
+            width: "100%",
+            height: "15px",
+            background:
+              "url(https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png)",
+          }}
+        >
+          <TitleForall titlename={"SUPER SAVER"} />
+        </div>
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"THIS OR THAT"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+        <TitleForall titlename={"SKINCARE"} />
+        <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
+      </>
+    );
+  }
   return (
     <>
       <Navbar />

@@ -1,15 +1,17 @@
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from "react";
 import { authentification } from "../../firebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import "../../styles/Home.css";
 import swal from "sweetalert";
+import axios from "axios";
 import { Appcontext } from "../../context/AppContext";
 
 export default function RightSide() {
+  const [data, setdata] = useState(false);
   const [otpentry, setotpentry] = useState("");
   const [mnumber, setNumber] = useState("");
   const [enterotp, setenterotp] = useState(false);
@@ -20,7 +22,8 @@ export default function RightSide() {
   const [email, setEmail] = useState("");
   const { Loginstate, LoginUser, SignUpUser } = useContext(Appcontext);
   const navigate = useNavigate();
-  const [dataforusers, setdataforusers] = useState([]);
+
+ 
 
   // ------------------------------------------------function for captchaverfication invisible-----------------------------------
 
@@ -43,6 +46,7 @@ export default function RightSide() {
     let phoneNumber = `+91${mnumber}`;
     console.log(phoneNumber);
     setenterotp(true);
+  checkmobile(mnumber);
     checkrecaptcha();
     let appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(authentification, phoneNumber, appVerifier)
@@ -60,29 +64,47 @@ export default function RightSide() {
         setenterotp(false);
         swal({
           title: "Error in Sending OTP",
-          text: "Please check Entered correct Mobile Number",
+          text: "Please check Entered Mobile Number or try after some time",
           icon: "error",
           button: "OK",
         });
       });
   }
 
+  // function requestotp() {
+  //   console.log("123456");
+  //   checkmobile(mnumber);
+  //   setenterotp(true);
+  // }
+
   // --------------------------------------------check whether user is available or not--------------------------------------------
+  const returnfetchuser = () => {
+    return fetch(`https://mocker-api.onrender.com/users`).then((res) =>
+      res.json()
+    );
+  };
 
   function checkmobile(m) {
-    axios.get("https://mocker-api.onrender.com/users").then((res) => {
-      setdataforusers(res.data);
-    });
+    
+    let datauser;
+    returnfetchuser().then((res) => {
 
-    let userAvailable = dataforusers.filter((el) => {
-      return el.mobile == m;
+      var userAvailable = res.filter((el) => {
+      //  console.log(el);
+        return Number(el.mnumber) == Number(m);
+      });
+  
+      // console.log(userAvailable.length)
+      if (userAvailable.length > 0) {
+        LoginUser(userAvailable[0]);
+        //console.log(Loginstate);
+        setdata(true);
+      } else {
+        setdata(false);
+      }
     });
-    if (userAvailable.length > 0) {
-      LoginUser(userAvailable);
-      return true;
-    } else {
-      return false;
-    }
+  
+ 
   }
 
   // -----------------------------------------function to verify otp----------------------------------------------------------
@@ -97,12 +119,12 @@ export default function RightSide() {
         const user = result.user;
         swal({
           title: "Mobile Number Verified",
-          text: `${phoneNumber} is successfully verified`,
+          text: `+91${mnumber} is successfully verified`,
           icon: "success",
           button: "SignUp / SignIn",
         });
 
-        if (checkmobile(mnumber) == true) {
+        if (data == true) {
           navigate("/");
         } else {
           setsignup(true);
@@ -120,12 +142,30 @@ export default function RightSide() {
         });
       });
   }
+  // function verifyotp() {
+  //   if (otpentry == "123456") {
+     
+  //       setTimeout(() => {
+  //         console.log(data)
+  //         if (data == true) {
+  //           navigate("/");
+  //           setsignup(false)
+  //         } 
+  //       }, 1000);
+
+  //         if(data==false){
+  //             setsignup(true);
+  //         }
+  //   }
+   
+  // }
 
   // ---------------------------------function for signing up user if not available---------------------------------
 
   function SignMeUp() {
     let username = `${firstName} ${lastName}`;
     let password = "";
+    let id = mnumber;
 
     let userinfo = {
       username: username,
@@ -139,7 +179,7 @@ export default function RightSide() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, mnumber, email, password }),
+      body: JSON.stringify({ id, username, mnumber, email, password }),
     })
       .then((res) => res.json())
       .then((res) => {
@@ -434,17 +474,6 @@ export default function RightSide() {
 
         <div style={{ color: "lightgray" }}>
           ___________________________________________________________________________________________________
-        </div>
-        <div>
-          <p
-            style={{
-              fontSize: "12px",
-              paddingTop: "15px",
-              paddingLeft: "15px",
-            }}
-          >
-            By Signing up, you agree to our Terms and Conditions
-          </p>
         </div>
       </div>
     );
