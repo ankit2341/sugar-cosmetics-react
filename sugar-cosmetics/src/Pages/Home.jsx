@@ -29,8 +29,8 @@ let Hotdealsdata = [
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
- const {Loginstate}=useContext(Appcontext);
-  console.log(Loginstate)
+  const { Loginstate } = useContext(Appcontext);
+  console.log(Loginstate);
   setTimeout(() => {
     setLoading(false);
   }, 1000);
@@ -77,12 +77,25 @@ export default function Home() {
         <div
           style={{
             width: "100%",
-            height: "15px",
+            height: "150px",
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
             background:
               "url(https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png)",
           }}
         >
-          <TitleForall titlename={"SUPER SAVER"} />
+          <div className="hr_tag">
+            <h4 style={{ color: "#FC2779" }}>───</h4>
+          </div>
+          <div>
+            <h5 style={{ color: "#ffffff", fontWeight: "bold" }}>
+              SUPER SAVERS
+            </h5>
+          </div>
+          <div className="hr_tag">
+            <h4 style={{ color: "#FC2779" }}>───</h4>
+          </div>
         </div>
         <div style={{ marginTop: "30px", marginBottom: "40px" }}></div>
         <TitleForall titlename={"THIS OR THAT"} />

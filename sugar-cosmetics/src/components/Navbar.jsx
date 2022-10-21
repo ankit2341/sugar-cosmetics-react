@@ -29,6 +29,7 @@ export default function Navbar() {
           <NavbarInput />
         </div>
 
+
         <div
           style={{
             width: "170px",
@@ -101,6 +102,7 @@ export default function Navbar() {
           <Link className="navoffers" to="/">
             Stores
           </Link>
+          <Link to="/">Diwali Gifting</Link>
         </div>
       </div>
     </div>

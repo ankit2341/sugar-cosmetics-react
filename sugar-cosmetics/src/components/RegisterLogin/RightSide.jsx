@@ -23,8 +23,6 @@ export default function RightSide() {
   const { Loginstate, LoginUser, SignUpUser } = useContext(Appcontext);
   const navigate = useNavigate();
 
- 
-
   // ------------------------------------------------function for captchaverfication invisible-----------------------------------
 
   function checkrecaptcha() {
@@ -45,8 +43,7 @@ export default function RightSide() {
   function requestotp() {
     let phoneNumber = `+91${mnumber}`;
     console.log(phoneNumber);
-    setenterotp(true);
-  checkmobile(mnumber);
+    checkmobile(mnumber);
     checkrecaptcha();
     let appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(authentification, phoneNumber, appVerifier)
@@ -58,6 +55,7 @@ export default function RightSide() {
           icon: "success",
           button: "OK",
         });
+        setenterotp(true);
       })
       .catch((error) => {
         console.log(error);
@@ -85,15 +83,13 @@ export default function RightSide() {
   };
 
   function checkmobile(m) {
-    
     let datauser;
     returnfetchuser().then((res) => {
-
       var userAvailable = res.filter((el) => {
-      //  console.log(el);
+        //  console.log(el);
         return Number(el.mnumber) == Number(m);
       });
-  
+
       // console.log(userAvailable.length)
       if (userAvailable.length > 0) {
         LoginUser(userAvailable[0]);
@@ -103,8 +99,6 @@ export default function RightSide() {
         setdata(false);
       }
     });
-  
- 
   }
 
   // -----------------------------------------function to verify otp----------------------------------------------------------
@@ -121,7 +115,7 @@ export default function RightSide() {
           title: "Mobile Number Verified",
           text: `+91${mnumber} is successfully verified`,
           icon: "success",
-          button: "SignUp / SignIn",
+          buttons:false,
         });
 
         if (data == true) {
@@ -144,20 +138,20 @@ export default function RightSide() {
   }
   // function verifyotp() {
   //   if (otpentry == "123456") {
-     
+
   //       setTimeout(() => {
   //         console.log(data)
   //         if (data == true) {
   //           navigate("/");
   //           setsignup(false)
-  //         } 
+  //         }
   //       }, 1000);
 
   //         if(data==false){
   //             setsignup(true);
   //         }
   //   }
-   
+
   // }
 
   // ---------------------------------function for signing up user if not available---------------------------------
@@ -185,6 +179,7 @@ export default function RightSide() {
       .then((res) => {
         swal({
           title: "Signed Up",
+          text:"Signed up successfully enjoy shopping !",
           icon: "success",
         });
         LoginUser(userinfo);

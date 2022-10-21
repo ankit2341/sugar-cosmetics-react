@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
 import { useState, useContext } from "react";
 import { Appcontext } from "../../context/AppContext"; 
+import swal from "sweetalert";
 
 export function NavbarInput() {
   return (
@@ -40,7 +41,26 @@ export function NavbarInput() {
 }
 
 export function NavbarLoginRegister() {
-  const { Loginstate } = useContext(Appcontext);
+  const { Loginstate, LogoutUser } = useContext(Appcontext);
+
+ function Onlogoutuser(){
+  swal({
+    title: "Are you sure?",
+    text: "Are you sure? you want to logout ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      LogoutUser();
+      swal("Logged out successfully! Thank you for shopping!", {
+        icon: "success",
+      });
+    } 
+  });
+ }
+
   if (Loginstate.isAuth == true) {
     return (
       <>
@@ -62,6 +82,7 @@ export function NavbarLoginRegister() {
             color: "#fff",
             marginLeft: "5px",
           }}
+          onClick={Onlogoutuser}
         >
           Hi, {Loginstate.userdata.username}
         </p>
