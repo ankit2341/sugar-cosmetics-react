@@ -39,6 +39,7 @@ export default function Home() {
     return (
       <>
         <Navbar />
+        <div style={{width:"100%",height:"135px"}}></div>
         <div
           style={{
             width: "100%",
@@ -108,6 +109,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <div style={{width:"100%",height:"135px"}}></div>
       <ControlledCarousel />
       <BestSellers />
       <TitleForall titlename={"HOT DEALS"} />

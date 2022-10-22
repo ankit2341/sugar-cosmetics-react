@@ -5,19 +5,20 @@ import { useState, useContext } from "react";
 import { Appcontext } from "../context/AppContext";
 
 export default function Navbar() {
-  const [colorChange, setColorchange] = useState(false);
+  // const [colorChange, setColorchange] = useState(false);
 
-  const changeNavbarColor = () => {
-    if (window.scrollY >= 110) {
-      setColorchange(true);
-    } else {
-      setColorchange(false);
-    }
-  };
-  window.addEventListener("scroll", changeNavbarColor);
+  // const changeNavbarColor = () => {
+  //   if (window.scrollY >= 110) {
+  //     setColorchange(true);
+  //   } else {
+  //     setColorchange(false);
+  //   }
+  // };
+  // window.addEventListener("scroll", changeNavbarColor);
 
   return (
-    <div className={colorChange ? "Navbar_main_fixed" : "Navbar_main"}>
+    // <div className={colorChange ? "Navbar_main_fixed" : "Navbar_main"}>
+    <div className="Navbar_main_fixed">
       <div className="Navbar_first">
         <div style={{ marginLeft: "0xp" }}>
           <Link to="/">
@@ -28,7 +29,6 @@ export default function Navbar() {
         <div style={{ width: "700px", height: "40px", marginLeft: "0px" }}>
           <NavbarInput />
         </div>
-
 
         <div
           style={{
@@ -91,7 +91,7 @@ export default function Navbar() {
 
       <div className="Navbar_second">
         <div className="menucontainer">
-          <Link className="navmakeup" to="/">
+          <Link className="navmakeup" to="/makeup">
             Makeup
           </Link>
           <Link to="/">Brushes</Link>
