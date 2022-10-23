@@ -35,6 +35,7 @@
 body{
     background-color:  rgba(243, 240, 240, 0.974);
     font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
 }
 button{
     font-weight: bold;
@@ -46,17 +47,21 @@ button{
     display: flex;
     align-items: center;
     justify-content: left;
+    font-size: 14px;
+    padding:10px;
     padding-left: 60px;
     background-color: #fff;
     margin-top: 30px;
 }
 .breadcrumbs1{
     width: 100%;
+    font-size: 14px;
     height: 36px;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: left;
+    padding: 10px;
     padding-left: 60px;
     background-color: #fff;
     margin-top: 0px;
