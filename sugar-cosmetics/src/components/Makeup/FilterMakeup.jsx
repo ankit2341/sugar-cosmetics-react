@@ -1,5 +1,8 @@
+import { useContext, useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { Appcontext } from "../../context/AppContext";
 
 const makeupProdType = [
   "Blush",
@@ -49,6 +52,37 @@ const makeupFeature = [
 
 export default function FilterMakeup() {
   const navigate = useNavigate();
+
+  const {fParams,filterParams}=useContext(Appcontext);
+  const[type,setType]=useState(fParams.prod_type);
+  const[category,setCategory]=useState(fParams.prod_category);
+  const[feature,setFeature]=useState(fParams.feature);
+  const[filtereddata,setFiltereddata]=useState([]);
+ 
+  
+  useEffect(()=>{
+    
+    const Returnfetchuser = () => {
+      if(feature=="" && type=="Blush" && category=="Powder"){
+        return  swal({
+          title: "You can get what you want!",
+          text: `Just select Product Type, Category & Feature `,
+          icon: "info",
+          button: "OK",
+        });
+      }
+      return fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&product_category=${category}&product_tags=${feature}`).then((res) =>
+        res.json()
+      );
+    };
+   
+    Returnfetchuser().then((res) => {
+       setFiltereddata(res);
+       console.log(filtereddata);
+       filterParams(type,category,feature,filtereddata)
+      });
+    console.log(type,category,feature)
+  },[type,category,feature])
   return (
     <>
       <div className="filter">
@@ -99,7 +133,7 @@ export default function FilterMakeup() {
                         className="radiofilter"
                         type="radio"
                         value={el}
-                        name="gender"
+                        name="gender" onChange={(e)=>{setType(e.target.value)}}
                       />
                       <label
                         style={{
@@ -141,7 +175,7 @@ export default function FilterMakeup() {
                         className="radiofilter"
                         type="radio"
                         value={el}
-                        name="gender"
+                        name="gender" onChange={(e)=>{setCategory(e.target.value)}}
                       />
                       <label
                         style={{
@@ -183,7 +217,7 @@ export default function FilterMakeup() {
                         className="radiofilter"
                         type="radio"
                         value={el}
-                        name="gender"
+                        name="gender"  onChange={(e)=>{setFeature(e.target.value)}}
                       />
                       <label
                         style={{

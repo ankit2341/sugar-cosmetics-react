@@ -2,13 +2,63 @@ import Navbar from "../Navbar";
 import FilterMakeup from "./FilterMakeup";
 import "../../styles/makeup.css";
 import Accordion from "react-bootstrap/Accordion";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Placeholder from "react-bootstrap/Placeholder";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 import Card2 from "./Card";
+import { Appcontext } from "../../context/AppContext";
+import swal from "sweetalert";
+import ProductNotFound from "./productNotFound";
+import BreadCrumps from "./BreadCrumps";
+
+const makeupProdType = [
+  "Blush",
+  "Bronzer",
+  "Eyebrow",
+  "Eyeliner",
+  "Eyeshadow",
+  "Foundation",
+  "Lip liner",
+  "Lipstick",
+  "Mascara",
+  "Nail polish",
+];
+
+const makeupCategory = [
+  "Powder",
+  "Cream",
+  "Pencil",
+  "Liquid",
+  "Gel",
+  "Cream",
+  "Palette",
+  "Concealer",
+  "Contour",
+  "Mineral",
+  "Highlighter",
+  "Lipstick",
+  "Lip gloss",
+  "Lip stain",
+];
+
+const makeupFeature = [
+  "Vegan",
+  "Canadian",
+  "Natural",
+  "Gluten free",
+  "Non-gmo",
+  "Purpicks",
+  "Certclean",
+  "Ewg verified",
+  "Organic",
+  "Usda organic",
+  "Hypoallergenic",
+  "No talc",
+  "Ecocert",
+];
 
 const sortvalue = ["Price: Low To High", "Price: High To Low"];
 
@@ -16,11 +66,37 @@ export default function FinalMakeupPage() {
   const [sortV, setSortV] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const {fParams,filterParams}=useContext(Appcontext);
+  const[type,setType]=useState(fParams.prod_type);
+  const[category,setCategory]=useState(fParams.prod_category);
+  const[feature,setFeature]=useState(fParams.feature);
+  const[filtereddata,setFiltereddata]=useState([]);
+ 
+  useEffect(()=>{
+    setLoading(true);
+    const Returnfetchuser = () => {
+         
+        return fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&product_category=${category}&product_tags=${feature}`).then((res) =>
+        res.json()
+      );
+     
+    };
+   
+    Returnfetchuser().then((res) => {
+      setTimeout(() => {
+        setFiltereddata(res);
+        setLoading(false)
+      }, 1000);
+      
+       console.log(filtereddata);
+      
+      });
+    console.log(type,category,feature);
+   
+  },[type,category,feature])
+  
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 2000);
-
+  
   return (
     <>
       <Navbar />
@@ -48,32 +124,7 @@ export default function FinalMakeupPage() {
           style={{ position: "relative", width: "979px", height: "270px" }}
         />
       </div>
-      <div className="breadcrumbs">
-        <span
-          style={{ color: "gray", cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        >
-          Home
-        </span>
-        <svg
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
-          focusable="false"
-          width="25"
-          fill="gray"
-          height="30"
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          data-testid="KeyboardArrowRightIcon"
-        >
-          <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-        </svg>
-        <span
-          style={{ fontWeight: "bold", cursor: "pointer" }}
-          onClick={() => navigate("/makeup")}
-        >
-          MakeUp
-        </span>
-      </div>
+      <BreadCrumps name={"MakeUp"}/>
       <div style={{ display: "flex", width: "90%", margin: "auto" }}>
         <div style={{ width: "313px", height: "auto" }}>
           <div
@@ -121,7 +172,7 @@ export default function FinalMakeupPage() {
                           <label
                             style={{
                               marginLeft: "20px",
-                              fontSize: "12px",
+                              fontSize: "16px",
                               color: "#212121",
                             }}
                             htmlFor=""
@@ -138,7 +189,159 @@ export default function FinalMakeupPage() {
           </div>
 
           <div>
-            <FilterMakeup />
+          <div className="filter">
+        <div
+          style={{
+            width: "294px",
+            height: "64px",
+            paddingLeft:"10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            fontWeight: "bold",
+          }}
+        >
+          Filters <span style={{marginLeft:"5px",overflow:"hidden",fontSize:"12px",color:"#212121",fontWeight:"normal"}}>{type},{category},{feature}</span>
+          <span
+            style={{ color: "#FC2779", marginLeft: "20px", cursor: "pointer" }}
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            Reset
+          </span>
+        </div>
+        <Accordion flush>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header style={{ fontWeight: "bolder" }}>
+              Product Type
+            </Accordion.Header>
+            <Accordion.Body>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                {makeupProdType.map((el) => {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "left",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      <input
+                        className="radiofilter"
+                        type="radio"
+                        value={el}
+                        name="gender" onChange={(e)=>{setType(e.target.value)}}
+                      />
+                      <label
+                        style={{
+                          marginLeft: "20px",
+                          fontSize: "12px",
+                          color: "#212121",
+                        }}
+                        htmlFor=""
+                      >
+                        {el}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>Category</Accordion.Header>
+            <Accordion.Body>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                {makeupCategory.map((el) => {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "left",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      <input
+                        className="radiofilter"
+                        type="radio"
+                        value={el}
+                        name="gender" onChange={(e)=>{setCategory(e.target.value)}}
+                      />
+                      <label
+                        style={{
+                          marginLeft: "20px",
+                          fontSize: "12px",
+                          color: "#212121",
+                        }}
+                        htmlFor=""
+                      >
+                        {el}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header>Feature</Accordion.Header>
+            <Accordion.Body>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                {makeupFeature.map((el) => {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "left",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      <input
+                        className="radiofilter"
+                        type="radio"
+                        value={el}
+                        name="gender"  onChange={(e)=>{setFeature(e.target.value)}}
+                      />
+                      <label
+                        style={{
+                          marginLeft: "20px",
+                          fontSize: "12px",
+                          color: "#212121",
+                        }}
+                        htmlFor=""
+                      >
+                        {el}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </div>
           </div>
         </div>
         <div className="prod_data">
@@ -203,13 +406,14 @@ export default function FinalMakeupPage() {
                   </Card>
                 );
               })
-            : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el) => {
-                return <Card2 />;
+            : filtereddata.length==undefined ||filtereddata.length==0? <ProductNotFound/>:
+            filtereddata.map((el) => {
+                return <Card2 carddata={el} />;
               })}
           {/* cards */}
         </div>
       </div>
-      <div style={{ color: "lightgray" }}>
+      <div style={{ color: "lightgray",marginTop:"190px" }}>
         _______________________________________________________________________________________________________________________________________________________________________________
       </div>
       <Footer />

@@ -76,29 +76,31 @@ export default function Navbar() {
             </svg>
           </div>
           <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="#fff"
-              width="18"
-              height="18"
-              viewBox="0 0 512 512"
-            >
-              <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM256 336c44.2 0 80-35.8 80-80s-35.8-80-80-80s-80 35.8-80 80s35.8 80 80 80zm0 64c-79.5 0-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144s-64.5 144-144 144zm32-144c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z" />
-            </svg>
+            <Link to="/Offers">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#fff"
+                width="18"
+                height="18"
+                viewBox="0 0 512 512"
+              >
+                <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM256 336c44.2 0 80-35.8 80-80s-35.8-80-80-80s-80 35.8-80 80s35.8 80 80 80zm0 64c-79.5 0-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144s-64.5 144-144 144zm32-144c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="Navbar_second">
         <div className="menucontainer">
-          <Link className="navmakeup" to="/makeup">
+          <Link className="navmakeup" to="/MakeUp">
             Makeup
           </Link>
-          <Link to="/">Brushes</Link>
-          <Link to="/">Skincare</Link>
-          <Link to="/">Gifting</Link>
+          <Link to="/Brushes">Brushes</Link>
+          <Link to="/SkinCare">Skincare</Link>
+          <Link to="/Gifting">Gifting</Link>
           <Link to="/">Blog</Link>
-          <Link to="/">Offers</Link>
+          <Link to="/Offers">Offers</Link>
           <Link className="navoffers" to="/">
             Stores
           </Link>

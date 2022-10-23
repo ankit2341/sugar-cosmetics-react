@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-export default function Card2() {
+export default function Card2({carddata}) {
   return (
     <Card
       style={{
@@ -21,7 +21,7 @@ export default function Card2() {
             marginTop: "0px",
           }}
           variant="top"
-          src="https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png"
+          src={carddata.api_featured_image}
         />
         <Card.Title
           style={{
@@ -31,7 +31,7 @@ export default function Card2() {
             marginTop: "10px",
           }}
         >
-          Card Title
+          {carddata.name}
         </Card.Title>
         <Card.Subtitle
           className="mb-2 text-muted"
@@ -51,13 +51,13 @@ export default function Card2() {
               src="https://i.postimg.cc/SR65TFbL/bx.jpg"
               alt=""
             />
-            <p style={{ marginTop: "15px" }}> 3 shades</p>
+            <p style={{ marginTop: "15px" }}> {carddata.product_colors.length} shades</p>
           </div>
         </Card.Subtitle>
         <Card.Text
           style={{ fontSize: "18px", fontWeight: "bold", marginTop: "10px" }}
         >
-          ₹dfh
+          ₹ {carddata.price}
         </Card.Text>
         <div
           style={{
@@ -101,7 +101,7 @@ export default function Card2() {
               fontWeight: "bold",
             }}
           >
-            Add To Cart
+           {carddata.product_colors.length==0?"ADD TO CART":"SELECT SHADE"}
           </Button>
         </div>
       </Card.Body>
