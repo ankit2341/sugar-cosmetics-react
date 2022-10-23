@@ -82,7 +82,7 @@
     background-color: #141414;
     align-items: center;
     justify-content: space-between;
-    margin-left: 35px;
+    margin-left: 25px;
 }
 .Navbar_second a{
     text-decoration: none;
@@ -116,4 +116,40 @@
     position: absolute;
     padding: 10px;
 }
+ul { 
+    margin: 150px auto 0; 
+    padding: 0; 
+    list-style: none; 
+    display: table;
+    width: 600px;
+    text-align: center;
+  }
+  li { 
+    display: table-cell; 
+    position: relative; 
+    padding: 15px 0;
+  }
+  .dropdown {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+  }
+  .dropdown:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #FC2779;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .dropdown:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
 
