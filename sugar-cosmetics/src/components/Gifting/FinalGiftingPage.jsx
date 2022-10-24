@@ -302,7 +302,7 @@ export default function FinalGiftingPage() {
             <ProductNotFound />
           ) : (
             filtereddata.map((el) => {
-              return <Card2 carddata={el} />;
+              return <Card2 carddata={el} id={el.id}/>;
             })
           )}
           {/* cards */}

@@ -1,7 +1,8 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
-export default function Card2({carddata}) {
+export default function Card2({carddata,id}) {
   return (
     <Card
       style={{
@@ -13,7 +14,7 @@ export default function Card2({carddata}) {
       }}
     >
       <Card.Body style={{ margin: "auto" }}>
-        <Card.Img
+        <Link to={`/results/${id}`}><Card.Img
           style={{
             width: "146px",
             height: "222px",
@@ -22,7 +23,7 @@ export default function Card2({carddata}) {
           }}
           variant="top"
           src={carddata.api_featured_image}
-        />
+        /></Link>
         <Card.Title
           style={{
             fontSize: "12.8px",

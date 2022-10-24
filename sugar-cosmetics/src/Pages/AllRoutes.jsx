@@ -17,7 +17,7 @@ import ProductDiscription from "../components/ProductDiscription/ProductDescript
 export default function AllRoutes() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />}></Route>
+      <Route path="/" element={<Home />}></Route>
       <Route path="/login-register" element={<RegisterLogin />}></Route>
       <Route path="/results" element></Route>
       <Route path="/MakeUp" element={<FinalMakeupPage />}></Route>
@@ -27,7 +27,7 @@ export default function AllRoutes() {
       <Route path="/Gifting" element={<FinalGiftingPage />}></Route>
       <Route path="/Offers" element={<FinalOfferPage />}></Route>
       <Route
-        path="/"
+        path="/results/:id"
         element={<ProductDiscription/> }
       ></Route>
     </Routes>

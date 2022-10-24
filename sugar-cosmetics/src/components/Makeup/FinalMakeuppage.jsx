@@ -408,7 +408,7 @@ export default function FinalMakeupPage() {
               })
             : filtereddata.length==undefined ||filtereddata.length==0? <ProductNotFound/>:
             filtereddata.map((el) => {
-                return <Card2 carddata={el} />;
+                return <Card2 carddata={el} id={el.id}/>;
               })}
           {/* cards */}
         </div>

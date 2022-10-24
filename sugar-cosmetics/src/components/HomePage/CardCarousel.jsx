@@ -1,8 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 function CardCarousel(props) {
-  const { src1, text, price } = props;
+  const { src1, text, price,prod_id } = props;
   return (
     <Card
       style={{
@@ -13,7 +14,7 @@ function CardCarousel(props) {
         boxShadow: "0 2px 5px rgb(0 0 0 / 10%)",
       }}
     >
-      <Card.Img variant="top" height="200px" src={src1} />
+      <Link to={`/results/${prod_id}`}><Card.Img variant="top" height="200px" src={src1} /></Link>
       <Card.Body>
         <Card.Text color="#000">
           <p style={{ fontSize: "12px" }}>{text}</p>

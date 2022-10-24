@@ -26,7 +26,11 @@ export default function PageNotFound() {
           justifyContent: "space-between",
         }}
       >
-        <img style={{marginTop:"10px",cursor:"pointer"}} onClick={()=>{navigate("/")}}
+        <img
+          style={{ marginTop: "10px", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/");
+          }}
           src="https://in.sugarcosmetics.com/desc-images/SUGARLogo1.png"
           alt=""
         />
@@ -38,7 +42,7 @@ export default function PageNotFound() {
               color: "#6C757D",
               fontWeight: "bold",
             }}
-            to="/"
+            to="/MakeUp"
           >
             MAKEUP
           </Link>
@@ -51,7 +55,7 @@ export default function PageNotFound() {
               color: "#6C757D",
               fontWeight: "bold",
             }}
-            to="/"
+            to="/Brushes"
           >
             BRUSHES
           </Link>
@@ -64,7 +68,7 @@ export default function PageNotFound() {
               color: "#6C757D",
               fontWeight: "bold",
             }}
-            to="/"
+            to="/SkinCare"
           >
             SKINCARE
           </Link>
@@ -77,7 +81,7 @@ export default function PageNotFound() {
               color: "#6C757D",
               fontWeight: "bold",
             }}
-            to="/"
+            to="/Gifting"
           >
             TRENDING
           </Link>
@@ -103,7 +107,7 @@ export default function PageNotFound() {
               color: "#6C757D",
               fontWeight: "bold",
             }}
-            to="/"
+            to="/Offers"
           >
             OFFERS
           </Link>
