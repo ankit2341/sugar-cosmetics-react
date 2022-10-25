@@ -1,8 +1,9 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function Card2({carddata,id}) {
+  const navigate=useNavigate();
   return (
     <Card
       style={{
@@ -78,6 +79,7 @@ export default function Card2({carddata,id}) {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onClick={()=>{navigate(`/results/${id}`)}}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,6 +103,7 @@ export default function Card2({carddata,id}) {
               color: "#fff",
               fontWeight: "bold",
             }}
+            onClick={()=>{navigate(`/results/${id}`)}}
           >
            {carddata.product_colors.length==0?"ADD TO CART":"SELECT SHADE"}
           </Button>

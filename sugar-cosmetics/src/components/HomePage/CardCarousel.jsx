@@ -1,9 +1,11 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function CardCarousel(props) {
   const { src1, text, price,prod_id } = props;
+  const navigate=useNavigate();
+
   return (
     <Card
       style={{
@@ -39,7 +41,7 @@ function CardCarousel(props) {
             height: "40px",
           }}
         >
-          <div className="wishlist">
+          <div className="wishlist" onClick={()=>{navigate(`/results/${prod_id}`)}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#000"
@@ -59,6 +61,7 @@ function CardCarousel(props) {
               backgroundColor: "#000",
               borderRadius: "8px",
             }}
+            onClick={()=>{navigate(`/results/${prod_id}`)}}
           >
             SHOP NOW
           </button>

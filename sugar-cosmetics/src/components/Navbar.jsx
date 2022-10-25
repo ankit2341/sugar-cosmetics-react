@@ -54,7 +54,7 @@ export default function Navbar() {
           }}
         >
           <div>
-            <Link to="/Wishlist" style={{width:"20px",height:"55px"}}>
+            <Link to="/user/wishlist" style={{width:"20px",height:"55px"}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#fff"

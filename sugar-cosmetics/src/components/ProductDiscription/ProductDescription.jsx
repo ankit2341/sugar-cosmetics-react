@@ -7,12 +7,13 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Recommended from "./Recommended";
 import ShopFromRecentlyViewed from "./Shopfromrecent";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../Footer";
 import userEvent from "@testing-library/user-event";
 import { varient, varient2, varient3 } from "./varients";
 // import { product } from "../../db";
 import swal from "sweetalert";
+import { Appcontext } from "../../context/AppContext";
 
 export default function ProductDiscription() {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,34 @@ export default function ProductDiscription() {
   );
   const [pincode, setPincode] = useState("");
   const [delivery, setDelivery] = useState("");
+  const { Addtocart, AddtoWishlist, Loginstate,cart,wishlist } = useContext(Appcontext);
+  console.log(cart,wishlist);
+
+  const checkcartAvailable=(data)=>{
+        let checkavail=cart.filter((el)=>{
+          return el.id==data.id
+        });
+        
+        if(checkavail.length>0){
+          return false;
+        }
+        else{
+          return true;
+        }
+  }
+
+  const checkwishAvailable=(data)=>{
+    let checkavailw=wishlist.filter((el)=>{
+      return el.id==data.id
+    });
+
+    if(checkavailw.length>0){
+      return false;
+    }
+    else{
+      return true;
+    }
+}
 
   const thumbnails = [
     `${data.api_featured_image}`,
@@ -289,7 +318,7 @@ export default function ProductDiscription() {
                 }}
               >
                 {varient.map((el) => {
-                  console.log(el.hex_value);
+                
                   // let hex=el.hex_value;
                   return (
                     <div
@@ -361,7 +390,7 @@ export default function ProductDiscription() {
                 }}
               >
                 {varient2.map((el) => {
-                  console.log(el.hex_value);
+                 
                   // let hex=el.hex_value;
                   return (
                     <div
@@ -433,7 +462,7 @@ export default function ProductDiscription() {
                 }}
               >
                 {varient3.map((el) => {
-                  console.log(el.hex_value);
+              
                   // let hex=el.hex_value;
                   return (
                     <div
@@ -502,6 +531,21 @@ export default function ProductDiscription() {
                   alignItems: "center",
                   justifyContent: "center",
                 }}
+                onClick={() => {if(Loginstate.isAuth==true && checkwishAvailable(data)==true){
+                  AddtoWishlist(data);
+                  swal({
+                    title: "Added To Wishlist",
+                    text: "Product added successfully to your wish list",
+                    buttons: false,
+                    icon: "success",
+                  }); }
+                  else{swal({
+                    title: "Login Now to Add to Wishlist",
+                    text: "or maybe Item is already exists in wishlist!",
+                    buttons: false,
+                    icon: "info",
+                  });}
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -524,6 +568,24 @@ export default function ProductDiscription() {
                   backgroundColor: "#000000",
                   color: "#fff",
                   fontWeight: "bold",
+                }}
+                onClick={() => {
+                  if(checkcartAvailable(data)==true){
+                  Addtocart(data);
+                  swal({
+                    buttons:false,
+                    title:"Item Added To Cart",
+                    text:"Item Added to cart successfully!",
+                    icon:"success"
+                  })
+                }else{
+                  swal({
+                    buttons:false,
+                    title:"Item already exists!",
+                    text:"Item already exists in cart!",
+                    icon:"error"
+                  })
+                }
                 }}
               >
                 ADD TO CART
@@ -798,6 +860,21 @@ export default function ProductDiscription() {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onClick={() => {if(Loginstate.isAuth==true && checkwishAvailable(data)==true){
+              AddtoWishlist(data);
+              swal({
+                title: "Added To Wishlist",
+                text: "Product added successfully to your wish list",
+                buttons: false,
+                icon: "success",
+              }); }
+              else{swal({
+                title: "Login Now to Add to Wishlist",
+                text: "or maybe Item is already exists in wishlist!",
+                buttons: false,
+                icon: "info",
+              });}
+            }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -821,6 +898,24 @@ export default function ProductDiscription() {
               color: "#fff",
               boxShadow: "inset 0 0 30px #616060",
               fontWeight: "bold",
+            }}
+            onClick={() => {
+              if(checkcartAvailable(data)==true){
+              Addtocart(data);
+              swal({
+                buttons:false,
+                title:"Item Added To Cart",
+                text:"Item Added to cart successfully!",
+                icon:"success"
+              })
+            }else{
+              swal({
+                buttons:false,
+                title:"Item already exists!",
+                text:"Item already exists in cart!",
+                icon:"error"
+              })
+            }
             }}
           >
             ADD TO CART

@@ -13,6 +13,10 @@ import ThumbnailCarousal, {
   ImageMagnifier,
 } from "../components/ProductDiscription/thumbnailcarousal";
 import ProductDiscription from "../components/ProductDiscription/ProductDescription";
+import FinalOrdersPage from "../components/userpage/FinalOrdersPage";
+import FinalWishlistPage from "../components/userpage/FinalWishlistPage";
+import FinalAddressPage from "../components/userpage/FinalAddressesPage";
+import FinalRefferPage from "../components/userpage/FinalReferPage";
 
 export default function AllRoutes() {
   return (
@@ -26,10 +30,11 @@ export default function AllRoutes() {
       <Route path="/SkinCare" element={<FinalSkincarePage />}></Route>
       <Route path="/Gifting" element={<FinalGiftingPage />}></Route>
       <Route path="/Offers" element={<FinalOfferPage />}></Route>
-      <Route
-        path="/results/:id"
-        element={<ProductDiscription/> }
-      ></Route>
+      <Route path="/results/:id" element={<ProductDiscription/>}></Route>
+      <Route path="/user/orders" element={<FinalOrdersPage/>}></Route>
+      <Route path="/user/wishlist" element={<FinalWishlistPage/>}></Route>
+      <Route path="/user/address" element={<FinalAddressPage/>}></Route>
+      <Route path="/user/refer" element={<FinalRefferPage/>}></Route>
     </Routes>
   );
 }

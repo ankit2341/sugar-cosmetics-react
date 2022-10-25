@@ -1,0 +1,75 @@
+*{
+    font-family: "Roboto",sans-serif;
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px;
+}
+.breadcrumbs1{
+    width: 100%;
+    font-size: 14px;
+    height: 36px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 10px;
+    padding-left: 60px;
+    background-color: #fff;
+    margin-top: 0px;
+}
+.main_user_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 1442.5px;
+    margin: auto;
+    height: 542px;
+}
+.user_info{
+    height: 498px;
+    width: 317.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.rightside_user{
+    width: 1101.72px;
+    height: 542px;
+    margin-top: 45px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.leftside_userinfo{
+    background: url(https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png);
+    width: 317.5px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+.span_leftside{
+    color: #000;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.span_div_left{
+    width: 160px;
+    height: 40px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: left;
+}
+.leftside_wishlist_arrow{
+    width: 247px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
