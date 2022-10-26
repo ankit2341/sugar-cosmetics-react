@@ -151,13 +151,7 @@ export default function MyVerticallyCenteredModal(props) {
             </Form.Group>
           </Row>
 
-          <Form.Group className="mb-3" id="formGridCheckbox">
-            <Form.Check
-              type="checkbox"
-              label="Set as default address"
-              style={{ accentColor: "#000" }}
-            />
-          </Form.Group>
+          
           {firstName == "" ||
           lastName == "" ||
           mnumber == "" ||

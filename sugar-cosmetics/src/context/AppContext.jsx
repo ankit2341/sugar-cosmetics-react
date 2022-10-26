@@ -3,9 +3,20 @@ import React, { useState } from "react";
 export const Appcontext = React.createContext();
 
 export function Appcontextprovider({ children }) {
+  // const [Loginstate, setLoginState] = useState({
+  //   isAuth: false,
+  //   userdata: null,
+  // });
+
+
+  // for testing---------------------------
   const [Loginstate, setLoginState] = useState({
-    isAuth: false,
-    userdata: null,
+    isAuth: true,
+    userdata: {username:"Ankit Patil",
+               mnumber:"7972592414",
+               email:"ankit@gmail.com",
+               password:""
+               },
   });
 
   const [fParams, setFParams] = useState({
@@ -18,6 +29,8 @@ export function Appcontextprovider({ children }) {
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [address, setAddress] = useState([]);
+  const [orders,setOrders]=useState([]);
+  const [defaultAddress,setDefaultAddress]=useState({});
 
   const LoginUser = (userinfo) => {
     setLoginState({
@@ -54,6 +67,18 @@ export function Appcontextprovider({ children }) {
     setAddress([...address, adddata]);
   };
 
+  const removeAddress=(toberemoved)=>{
+    setAddress(toberemoved);
+  };
+
+  const SettingDefaultAdd=(value)=>{
+       setDefaultAddress(value);
+  }
+
+  const ShowOrders=(orderData)=>{
+    setOrders([...orders,orderData])
+  };
+
   return (
     <Appcontext.Provider
       value={{
@@ -68,6 +93,11 @@ export function Appcontextprovider({ children }) {
         AddtoWishlist,
         address,
         AddAddress,
+        removeAddress,
+        defaultAddress,
+        SettingDefaultAdd,
+        orders,
+        ShowOrders
       }}
     >
       {children}

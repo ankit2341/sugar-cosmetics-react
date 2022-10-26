@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
+import { Appcontext } from "../../context/AppContext";
 
 export default function FinalRefferPage() {
   const navigate = useNavigate();
+  const {Loginstate}=useContext(Appcontext);
 
   return (
     <>
@@ -32,7 +34,7 @@ export default function FinalRefferPage() {
         </svg>
         <span
           style={{ fontWeight: "normal", cursor: "pointer" }}
-          onClick={() => navigate("/user")}
+          onClick={() => navigate("/")}
         >
           Account
         </span>
@@ -50,7 +52,7 @@ export default function FinalRefferPage() {
         </svg>
         <span
           style={{ fontWeight: "bold", cursor: "pointer" }}
-          onClick={() => navigate("/user")}
+          onClick={() => navigate("/user/refer")}
         >
           Refer & Earn
         </span>
@@ -77,21 +79,21 @@ export default function FinalRefferPage() {
                   fontWeight: "bold",
                 }}
               >
-                Nmae
+                {Loginstate.userdata.username}
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                +91 <span>{Loginstate.userdata.mnumber}</span>
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                {Loginstate.userdata.email}
               </span>
             </div>
           </div>

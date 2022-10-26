@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
+import Card2 from "../Makeup/Card";
+import { Appcontext } from "../../context/AppContext";
 
 export default function FinalWishlistPage() {
   const navigate = useNavigate();
+  const { wishlist, Loginstate } = useContext(Appcontext);
 
   return (
     <>
@@ -32,7 +35,7 @@ export default function FinalWishlistPage() {
         </svg>
         <span
           style={{ fontWeight: "normal", cursor: "pointer" }}
-          onClick={() => navigate("/user/wishlist")}
+          onClick={() => navigate("/")}
         >
           Account
         </span>
@@ -77,21 +80,21 @@ export default function FinalWishlistPage() {
                   fontWeight: "bold",
                 }}
               >
-                Nmae
+                {Loginstate.userdata.username}
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                +91 <span>{Loginstate.userdata.mnumber}</span>
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                {Loginstate.userdata.email}
               </span>
             </div>
           </div>
@@ -338,14 +341,29 @@ export default function FinalWishlistPage() {
         </div>
 
         <div className="rightside_user">
+        {wishlist.length == 0 || wishlist.length == undefined ? (
           <IfEmpty
-            img_src={
-              "https://in.sugarcosmetics.com/desc-images/WishlistEmpty.png"
-            }
-            first={"Your wishlist is empty"}
-            second={"Looks like you haven’t made your choice yet"}
-            btn_text={"FILL IT UP"}
-          />
+          img_src={
+            "https://in.sugarcosmetics.com/desc-images/WishlistEmpty.png"
+          }
+          first={"Your wishlist is empty"}
+          second={"Looks like you haven’t made your choice yet"}
+          btn_text={"FILL IT UP"}
+        />
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3,346px)",
+                gridTemplateRows: "repeat(1,420px)",
+                gap: "15px",
+              }}
+            >
+              {wishlist.map((el) => {
+                return <Card2 carddata={el} id={el.id} />;
+              })}
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -16,7 +16,7 @@ export default function IfEmpty2({ btn_text, img_src, first, second }) {
         flexDirection: "column",
       }}
     >
-      <img src={img_src} alt="" style={{ width: "214px", height: "195px" }} />
+      <img src={img_src} alt="" style={{ width: "284px", height: "195px" }} />
       <p
         style={{
           marginTop: "15px",

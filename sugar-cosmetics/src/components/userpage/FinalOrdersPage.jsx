@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import Navbar from "../Navbar";
 import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
+import { Appcontext } from "../../context/AppContext";
+import Card2 from "../Makeup/Card";
 
 export default function FinalOrdersPage() {
   const navigate = useNavigate();
+  const { orders, ShowOrders, Loginstate } = useContext(Appcontext);
 
   return (
     <>
@@ -32,7 +36,7 @@ export default function FinalOrdersPage() {
         </svg>
         <span
           style={{ fontWeight: "normal", cursor: "pointer" }}
-          onClick={() => navigate("/user")}
+          onClick={() => navigate("/")}
         >
           Account
         </span>
@@ -77,21 +81,21 @@ export default function FinalOrdersPage() {
                   fontWeight: "bold",
                 }}
               >
-                Nmae
+                {Loginstate.userdata.username}
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                +91 <span>{Loginstate.userdata.mnumber}</span>
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "bold" }}
+                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
               >
-                Nmae
+                {Loginstate.userdata.email}
               </span>
             </div>
           </div>
@@ -107,7 +111,12 @@ export default function FinalOrdersPage() {
             }}
           >
             <div className="leftside_wishlist_arrow">
-              <div className="span_div_left" onClick={()=>{navigate("/user/orders")}}>
+              <div
+                className="span_div_left"
+                onClick={() => {
+                  navigate("/user/orders");
+                }}
+              >
                 <svg
                   width="1em"
                   height="1em"
@@ -169,9 +178,11 @@ export default function FinalOrdersPage() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  cursor:"pointer"
+                  cursor: "pointer",
                 }}
-                onClick={()=>{navigate("/user/address")}}
+                onClick={() => {
+                  navigate("/user/address");
+                }}
               >
                 <svg
                   width="1em"
@@ -229,7 +240,12 @@ export default function FinalOrdersPage() {
             />
 
             <div className="leftside_wishlist_arrow">
-              <div className="span_div_left" onClick={()=>{navigate("/user/wishlist")}}>
+              <div
+                className="span_div_left"
+                onClick={() => {
+                  navigate("/user/wishlist");
+                }}
+              >
                 <svg
                   width="1em"
                   height="1em"
@@ -286,7 +302,12 @@ export default function FinalOrdersPage() {
             />
 
             <div className="leftside_wishlist_arrow">
-              <div className="span_div_left" onClick={()=>{navigate("/user/refer")}}>
+              <div
+                className="span_div_left"
+                onClick={() => {
+                  navigate("/user/refer");
+                }}
+              >
                 <svg
                   width="1em"
                   height="1em"
@@ -337,14 +358,29 @@ export default function FinalOrdersPage() {
         </div>
 
         <div className="rightside_user">
-          <IfEmpty
-            img_src={
-              "https://media.sugarcosmetics.com/upload/ic_empty_order%201.png"
-            }
-            first={"Order is empty"}
-            second={"What! No order yet? Get going already!"}
-            btn_text={"SHOP NOW"}
-          />
+          {orders.length == 0 || orders.length == undefined ? (
+            <IfEmpty
+              img_src={
+                "https://media.sugarcosmetics.com/upload/ic_empty_order%201.png"
+              }
+              first={"Order is empty"}
+              second={"What! No order yet? Get going already!"}
+              btn_text={"SHOP NOW"}
+            />
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3,346px)",
+                gridTemplateRows: "repeat(auto,420px)",
+                gap: "15px",
+              }}
+            >
+              {orders.map((el) => {
+                return <Card2 carddata={el} id={el.id} />;
+              })}
+            </div>
+          )}
         </div>
       </div>
     </>

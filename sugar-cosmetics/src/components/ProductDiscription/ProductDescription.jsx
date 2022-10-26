@@ -64,6 +64,15 @@ export default function ProductDiscription() {
   }
 
   const checkwishAvailable=(data)=>{
+    if(wishlist.length>=3){
+      return false(
+        swal({
+          buttons:false,
+          text:"More items cannot be added to wishlist",
+          icon:"error"
+        })
+      )
+    }
     let checkavailw=wishlist.filter((el)=>{
       return el.id==data.id
     });
@@ -540,7 +549,7 @@ export default function ProductDiscription() {
                     icon: "success",
                   }); }
                   else{swal({
-                    title: "Login Now to Add to Wishlist",
+                    title: "Login Now or Item limit exceeded",
                     text: "or maybe Item is already exists in wishlist!",
                     buttons: false,
                     icon: "info",
