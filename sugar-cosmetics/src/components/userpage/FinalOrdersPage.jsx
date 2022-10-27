@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import Navbar from "../Navbar";
 import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
 import { Appcontext } from "../../context/AppContext";
 import Card2 from "../Makeup/Card";
+import Card from "react-bootstrap/Card";
 
 export default function FinalOrdersPage() {
   const navigate = useNavigate();
   const { orders, ShowOrders, Loginstate } = useContext(Appcontext);
+  // console.log(orders);
 
   return (
     <>
@@ -86,14 +88,22 @@ export default function FinalOrdersPage() {
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "normal",
+                }}
               >
                 +91 <span>{Loginstate.userdata.mnumber}</span>
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "normal",
+                }}
               >
                 {Loginstate.userdata.email}
               </span>
@@ -370,14 +380,94 @@ export default function FinalOrdersPage() {
           ) : (
             <div
               style={{
+                width: "1100px",
                 display: "grid",
-                gridTemplateColumns: "repeat(3,346px)",
-                gridTemplateRows: "repeat(auto,420px)",
-                gap: "15px",
+                marginLeft: "30px",
+                marginTop: "25px",
+                gridTemplateColumns: "repeat(4,250px)",
+                gridTemplateRows: "repeat(auto,300px)",
+                gap: "10px",
+                height: "542px",
+                borderRadius: "12px",
               }}
             >
               {orders.map((el) => {
-                return <Card2 carddata={el} id={el.id} />;
+                return (
+                  <>
+                    <Card
+                      style={{
+                        width: "250px",
+                        height: "250px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "auto" }}>
+                        <Link to={`/results/${el.id}`}>
+                          <Card.Img
+                            style={{
+                              width: "100px",
+                              height: "100px",
+                              margin: "auto",
+                              marginTop: "0px",
+                            }}
+                            variant="top"
+                            src={el.api_featured_image}
+                          />
+                        </Link>
+                        <Card.Title
+                          style={{
+                            fontSize: "12.8px",
+                            color: "#212121",
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {el.name} <span> ₹ {el.price}</span>
+                        </Card.Title>
+                        <Card.Subtitle
+                          className="mb-2 text-muted"
+                          style={{
+                            fontSize: "14px",
+                            color: "#757575",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              width: "100%",
+                              height: "18px",
+                            }}
+                          >
+                            <img
+                              style={{ height: "12px", width: "25px" }}
+                              src="https://i.postimg.cc/SR65TFbL/bx.jpg"
+                              alt=""
+                            />
+                            <p style={{ marginTop: "15px" }}>
+                              {" "}
+                              {el.product_colors.length} shades
+                            </p>
+                          </div>
+                        </Card.Subtitle>
+                        <Card.Text
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            marginTop: "10px",
+                          }}
+                        >
+                          Estimated Delivery In Between 2 to 10 Days
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </>
+                );
               })}
             </div>
           )}

@@ -3,21 +3,21 @@ import React, { useState } from "react";
 export const Appcontext = React.createContext();
 
 export function Appcontextprovider({ children }) {
-  // const [Loginstate, setLoginState] = useState({
-  //   isAuth: false,
-  //   userdata: null,
-  // });
+  const [Loginstate, setLoginState] = useState({
+    isAuth: false,
+    userdata: null,
+  });
 
 
   // for testing---------------------------
-  const [Loginstate, setLoginState] = useState({
-    isAuth: true,
-    userdata: {username:"Ankit Patil",
-               mnumber:"7972592414",
-               email:"ankit@gmail.com",
-               password:""
-               },
-  });
+  // const [Loginstate, setLoginState] = useState({
+  //   isAuth: true,
+  //   userdata: {username:"Ankit Patil",
+  //              mnumber:"7972592414",
+  //              email:"ankit@gmail.com",
+  //              password:""
+  //              },
+  // });
 
   const [fParams, setFParams] = useState({
     prod_type: "Blush",
@@ -67,6 +67,10 @@ export function Appcontextprovider({ children }) {
     setWishlist([...wishlist, data]);
   };
 
+  const RemoveWishlist=(data)=>{
+    setWishlist(data);
+  }
+
   const AddAddress = (adddata) => {
     setAddress([...address, adddata]);
   };
@@ -80,7 +84,7 @@ export function Appcontextprovider({ children }) {
   }
 
   const ShowOrders=(orderData)=>{
-    setOrders([...orders,orderData])
+    setOrders(orderData)
   };
 
   return (
@@ -96,6 +100,7 @@ export function Appcontextprovider({ children }) {
         RemoveFromCart,
         wishlist,
         AddtoWishlist,
+        RemoveWishlist,
         address,
         AddAddress,
         removeAddress,

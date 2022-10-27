@@ -5,10 +5,33 @@ import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
 import Card2 from "../Makeup/Card";
 import { Appcontext } from "../../context/AppContext";
+import swal from "sweetalert";
 
 export default function FinalWishlistPage() {
   const navigate = useNavigate();
-  const { wishlist, Loginstate } = useContext(Appcontext);
+  const { wishlist, Loginstate,RemoveWishlist } = useContext(Appcontext);
+
+  function removefromwishlist(data){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Item!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        let removeadd = wishlist.filter((el) => {
+          return el.id !== data.id;
+        });
+
+        RemoveWishlist(removeadd);
+        swal("Items has been removed from Wishlist!", {
+          icon: "success",
+        });
+      } else {
+      }
+    });
+  }
 
   return (
     <>
@@ -360,7 +383,12 @@ export default function FinalWishlistPage() {
               }}
             >
               {wishlist.map((el) => {
-                return <Card2 carddata={el} id={el.id} />;
+                return(
+                <div style={{width:"346px",height:"450px"}}>
+                 <Card2 carddata={el} id={el.id} />
+                 <button onClick={()=>{removefromwishlist(el)}} style={{width:"346px",height:"40px",color:"#fff",backgroundColor:"#000",borderBottomLeftRadius:"7px",borderBottomRightRadius:"7px"}}>REMOVE</button>
+                 </div>
+                )
               })}
             </div>
           )}

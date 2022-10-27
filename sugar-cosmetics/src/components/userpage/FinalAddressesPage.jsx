@@ -11,13 +11,17 @@ import swal from "sweetalert";
 export default function FinalAddressPage() {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
-  const { address, Loginstate,removeAddress,defaultAddress,SettingDefaultAdd } = useContext(Appcontext);
-  console.log(address);
-
-
-  
-  function remeoveaddress(addtoberemoved){
-    if(defaultAddress==addtoberemoved){
+  const {
+    address,
+    Loginstate,
+    removeAddress,
+    defaultAddress,
+    SettingDefaultAdd,
+  } = useContext(Appcontext);
+//   console.log(address);
+//  console.log(Loginstate);
+  function remeoveaddress(addtoberemoved) {
+    if (defaultAddress == addtoberemoved) {
       SettingDefaultAdd("");
     }
     swal({
@@ -26,44 +30,39 @@ export default function FinalAddressPage() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
       if (willDelete) {
-        let removeadd=address.filter((el)=>{
-          return el.areaa!==addtoberemoved.areaa;
+        let removeadd = address.filter((el) => {
+          return el.areaa !== addtoberemoved.areaa;
         });
-    
+
         removeAddress(removeadd);
         swal("Address has been removed from list!", {
           icon: "success",
         });
       } else {
-      
       }
     });
   }
 
-   const setAsdefault=(el)=>{
-    console.log("inside")
+  const setAsdefault = (el) => {
+    console.log("inside");
     swal({
       title: "Are you sure?",
       text: "You want to set this address as default address?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
       if (willDelete) {
         SettingDefaultAdd(el);
         swal("Address has been set as default address", {
           icon: "success",
         });
       } else {
-      
       }
     });
-  }
-
+  };
 
   return (
     <>
@@ -140,14 +139,22 @@ export default function FinalAddressPage() {
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "normal",
+                }}
               >
                 +91 <span>{Loginstate.userdata.mnumber}</span>
               </span>
             </div>
             <div style={{ width: "297.5px", height: "20px" }}>
               <span
-                style={{ color: "#fff", fontSize: "14px", fontWeight: "normal" }}
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "normal",
+                }}
               >
                 {Loginstate.userdata.email}
               </span>
@@ -426,67 +433,260 @@ export default function FinalAddressPage() {
               btn_text={"ADD NEW"}
             />
           ) : (
-            <div style={{width:"100%",height:"100%",display:"block"}}>
-            <div style={{width:"1100px",height:"44px",display:"flex",alignItems:"center",justifyContent:"right",marginBottom:"20px",marginTop:"10px"}}>
-          <button
-        style={{
-          width: "200px",
-          height: "44px",top:"0",
-          backgroundColor: "#000",
-          marginTop: "10px",
-          color: "#fff",
-          borderRadius: "5px",marginRight:"20px"
-        }}
-        onClick={() => setModalShow(true)}
-      >
-        ADD NEW ADDRESS
-      </button>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />  
-         </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2,500px)",
-                gridTemplateRows: "repeat(3,150px)",gap:"20px",marginLeft:"70px"
-              }}
-            >
-              {address.map((el) => {if(el==defaultAddress){
-return (
-  <div style={{width:"450px",height:"150px",borderRadius:"5px",color:"#757575",border:"1px solid #757575",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
-    <div style={{width:"400px",height:"20px",fontWeight:"bold",display:"flex",alignItems:"center",justifyContent:"space-between"}}>{el.firstN + " " + el.lastN} <span style={{cursor:"pointer"}} onClick={()=>{remeoveaddress(el)}}>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#757575" width="15" height="15" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg></span></div>
-    <div style={{width:"400px",height:"20px",display:"flex",alignItems:"center",justifyContent:"left"}}>{el.mobile}</div>
-    <div style={{width:"400px",height:"35px",display:"flex",alignItems:"center",justifyContent:"left",overflow:"auto"}}>{el.areaa}</div>
-    <div style={{width:"400px",height:"15px",display:"flex",alignItems:"center",justifyContent:"left"}}>{el.pin}</div>
-    <div style={{width:"400px",height:"25px",display:"flex",alignItems:"center",justifyContent:"left"}}>
-      <span>{el.statee}</span>
-      <span style={{marginLeft:"20px"}}>{el.cityy}</span>
-    </div>
-    <div style={{width:"400px",height:"30px",display:"flex",alignItems:"center",justifyContent:"left",fontWeight:"bold",color:"#000",fontSize:"16px"}}><svg class="MuiSvgIcon-root desktopAddress_defaultCheck__My_zC" width="25px" height="25px" fill="#FF0000" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg>Default Delivering Address</div>
-  </div>
-);
-              }
-              else{
-                return (
-                  <div style={{width:"450px",height:"150px",borderRadius:"5px",color:"#757575",border:"1px solid #757575",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}} >
-                    <div style={{width:"400px",height:"30px",fontWeight:"bold",display:"flex",alignItems:"center",justifyContent:"space-between"}}>{el.firstN + " " + el.lastN} <span style={{cursor:"pointer"}} onClick={()=>{remeoveaddress(el)}}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#757575" width="15" height="15" viewBox="0 0 448 512"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg></span></div>
-                    <div style={{width:"400px",height:"20px",display:"flex",alignItems:"center",justifyContent:"left"}}>{el.mobile}</div>
-                    <div style={{width:"400px",height:"50px",display:"flex",alignItems:"center",justifyContent:"left",overflow:"hidden",cursor:"pointer"}} onClick={()=>setAsdefault(el)}>{el.areaa}</div>
-                    <div style={{width:"400px",height:"20px",display:"flex",alignItems:"center",justifyContent:"left"}}>{el.pin}</div>
-                    <div style={{width:"400px",height:"30px",display:"flex",alignItems:"center",justifyContent:"left"}}>
-                      <span >{el.statee}</span>
-                      <span style={{marginLeft:"30px"}}>{el.cityy}</span>
-                    </div>
-                  </div>
-                );
-              }
-              })}
-            </div>
+            <div style={{ width: "100%", height: "100%", display: "block" }}>
+              <div
+                style={{
+                  width: "1100px",
+                  height: "44px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "right",
+                  marginBottom: "20px",
+                  marginTop: "10px",
+                }}
+              >
+                <button
+                  style={{
+                    width: "200px",
+                    height: "44px",
+                    top: "0",
+                    backgroundColor: "#000",
+                    marginTop: "10px",
+                    color: "#fff",
+                    borderRadius: "5px",
+                    marginRight: "20px",
+                  }}
+                  onClick={() => setModalShow(true)}
+                >
+                  ADD NEW ADDRESS
+                </button>
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+              </div>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2,500px)",
+                  gridTemplateRows: "repeat(3,150px)",
+                  gap: "20px",
+                  marginLeft: "70px",
+                }}
+              >
+                {address.map((el) => {
+                  if (el == defaultAddress) {
+                    return (
+                      <div
+                        style={{
+                          width: "450px",
+                          height: "150px",
+                          borderRadius: "5px",
+                          color: "#757575",
+                          border: "1px solid #757575",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "20px",
+                            fontWeight: "bold",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          {el.firstN + " " + el.lastN}{" "}
+                          <span
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              remeoveaddress(el);
+                            }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="#757575"
+                              width="15"
+                              height="15"
+                              viewBox="0 0 448 512"
+                            >
+                              <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                            </svg>
+                          </span>
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "20px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          {el.mobile}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "35px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                            overflow: "auto",
+                          }}
+                        >
+                          {el.areaa}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "15px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          {el.pin}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "25px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          <span>{el.statee}</span>
+                          <span style={{ marginLeft: "20px" }}>{el.cityy}</span>
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "30px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                            fontWeight: "bold",
+                            color: "#000",
+                            fontSize: "16px",
+                          }}
+                        >
+                          <svg
+                            class="MuiSvgIcon-root desktopAddress_defaultCheck__My_zC"
+                            width="25px"
+                            height="25px"
+                            fill="#FF0000"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
+                          </svg>
+                          Default Delivering Address
+                        </div>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div
+                        style={{
+                          width: "450px",
+                          height: "150px",
+                          borderRadius: "5px",
+                          color: "#757575",
+                          border: "1px solid #757575",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "30px",
+                            fontWeight: "bold",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          {el.firstN + " " + el.lastN}{" "}
+                          <span
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              remeoveaddress(el);
+                            }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="#757575"
+                              width="15"
+                              height="15"
+                              viewBox="0 0 448 512"
+                            >
+                              <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                            </svg>
+                          </span>
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "20px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          {el.mobile}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "50px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                            overflow: "hidden",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => setAsdefault(el)}
+                        >
+                          {el.areaa}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "20px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          {el.pin}
+                        </div>
+                        <div
+                          style={{
+                            width: "400px",
+                            height: "30px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "left",
+                          }}
+                        >
+                          <span>{el.statee}</span>
+                          <span style={{ marginLeft: "30px" }}>{el.cityy}</span>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
             </div>
           )}
         </div>
