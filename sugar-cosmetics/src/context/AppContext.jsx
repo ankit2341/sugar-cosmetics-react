@@ -59,6 +59,10 @@ export function Appcontextprovider({ children }) {
     setCart([...cart, data]);
   };
 
+  const RemoveFromCart=(data)=>{
+    setCart(data)
+  }
+
   const AddtoWishlist = (data) => {
     setWishlist([...wishlist, data]);
   };
@@ -89,6 +93,7 @@ export function Appcontextprovider({ children }) {
         filterParams,
         cart,
         Addtocart,
+        RemoveFromCart,
         wishlist,
         AddtoWishlist,
         address,

@@ -51,6 +51,15 @@ export default function ProductDiscription() {
   console.log(cart,wishlist);
 
   const checkcartAvailable=(data)=>{
+    if(cart.length>=7){
+       return false(
+        swal({
+          text:"Item limit exceeded in cart! clear it or checkout now!",
+          buttons:false,
+          icon:"info"
+        })
+       )
+    }
         let checkavail=cart.filter((el)=>{
           return el.id==data.id
         });

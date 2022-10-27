@@ -30,6 +30,7 @@ let Hotdealsdata = [
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const { Loginstate } = useContext(Appcontext);
+  const [show, setShow] = useState(true);
   console.log(Loginstate);
   setTimeout(() => {
     setLoading(false);

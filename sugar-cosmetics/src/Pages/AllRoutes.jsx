@@ -17,6 +17,7 @@ import FinalOrdersPage from "../components/userpage/FinalOrdersPage";
 import FinalWishlistPage from "../components/userpage/FinalWishlistPage";
 import FinalAddressPage from "../components/userpage/FinalAddressesPage";
 import FinalRefferPage from "../components/userpage/FinalReferPage";
+import Cart from "./Cart";
 
 export default function AllRoutes() {
   return (
@@ -35,6 +36,7 @@ export default function AllRoutes() {
       <Route path="/user/wishlist" element={<FinalWishlistPage/>}></Route>
       <Route path="/user/address" element={<FinalAddressPage/>}></Route>
       <Route path="/user/refer" element={<FinalRefferPage/>}></Route>
+      <Route path="/Cart" element={<Cart/>}></Route>
     </Routes>
   );
 }
