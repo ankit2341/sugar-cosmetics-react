@@ -19,13 +19,14 @@ import FinalAddressPage from "../components/userpage/FinalAddressesPage";
 import FinalRefferPage from "../components/userpage/FinalReferPage";
 import Cart from "./Cart";
 import PrivateRoute from "../context/PrivateRoute";
+import SearchResultsPage from "./SearchResultsPage";
 
 export default function AllRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
       <Route path="/login-register" element={<RegisterLogin />}></Route>
-      <Route path="/results" element></Route>
+      <Route path="/results" element={<SearchResultsPage/>}></Route>
       <Route path="/MakeUp" element={<FinalMakeupPage />}></Route>
       <Route path="*" element={<PageNotFound />}></Route>
       <Route path="/Brushes" element={<FinalBrushesPage />}></Route>

@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import "../../styles/userpage.css";
 import IfEmpty from "./IfEmpty";
 import { Appcontext } from "../../context/AppContext";
+import Footer from "../Footer";
 
 export default function FinalRefferPage() {
   const navigate = useNavigate();
@@ -340,9 +341,11 @@ export default function FinalRefferPage() {
         </div>
 
         <div className="rightside_user">
-         
+         <img src="https://i.postimg.cc/mZMjgXnn/sugar-refer-and-earn.jpg" alt="" style={{width:"100%",height:"100%"}} />
         </div>
       </div>
+      <hr style={{marginTop:"70px"}} />
+      <Footer/>
     </>
   );
 }

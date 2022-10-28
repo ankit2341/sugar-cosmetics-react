@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { InputGroup, InputLeftAddon, Input } from "@chakra-ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/Navbar.css";
 import { useState, useContext } from "react";
 import { Appcontext } from "../../context/AppContext";
@@ -10,13 +10,21 @@ import CloseButton from "react-bootstrap/CloseButton";
 import Form from "react-bootstrap/Form";
 
 export function NavbarInput() {
+  const { searchInput, SettingInputEmpty } = useContext(Appcontext);
+  const [sinput,setSinput]=useState("");
+  const navigate=useNavigate();
+  
   return (
     <>
       <InputGroup className="mb-3 NavbarInput">
         <Form.Control
           className="input_focus_nav"
-          style={{ width: "580px", height: "38px", marginTop: "1px" }}
-          placeholder="Recipient's username"
+          style={{ width: "580px", height: "38px", marginTop: "1px",color:"#FF0000" }}
+          placeholder={`Try "Lipstick"`}
+          value={sinput}
+          onChange={(e) => {
+            setSinput(e.target.value);
+          }}
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
         />
@@ -28,6 +36,7 @@ export function NavbarInput() {
             borderBottomRightRadius: "7px",
             borderTopRightRadius: "7px",
           }}
+          onClick={()=>{SettingInputEmpty(sinput);navigate("/results")}}
         >
           <span>
             <svg
@@ -37,7 +46,12 @@ export function NavbarInput() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               alt="search_icon"
-              style={{height:"16px",width:"18px",paddingTop:"0px",marginRight:"5px"}}
+              style={{
+                height: "16px",
+                width: "18px",
+                paddingTop: "0px",
+                marginRight: "5px",
+              }}
             >
               <path
                 d="m15.646 14.651-2.942-2.944a7.246 7.246 0 0 0-.804-9.869A7.1 7.1 0 0 0 6.942.003 7.106 7.106 0 0 0 2.09 2.109 7.233 7.233 0 0 0 .003 7.004a7.24 7.24 0 0 0 1.819 5.003 7.093 7.093 0 0 0 9.78.812l2.918 2.944a.793.793 0 0 0 .868.175c.097-.04.185-.1.258-.175a.804.804 0 0 0 0-1.112ZM7.153 12.82a5.516 5.516 0 0 1-3.083-.944A5.59 5.59 0 0 1 2.025 9.36a5.648 5.648 0 0 1-.316-3.236 5.617 5.617 0 0 1 1.52-2.868A5.536 5.536 0 0 1 6.07 1.725a5.505 5.505 0 0 1 3.207.318 5.562 5.562 0 0 1 2.49 2.063 5.637 5.637 0 0 1-.69 7.072 5.526 5.526 0 0 1-3.925 1.64Z"
@@ -145,5 +159,3 @@ export function NavbarLoginRegister() {
     </>
   );
 }
-
-

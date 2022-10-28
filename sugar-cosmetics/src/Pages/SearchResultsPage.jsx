@@ -1,154 +1,160 @@
-import Navbar from "../Navbar";
-import FilterMakeup from "./FilterMakeup";
-import "../../styles/makeup.css";
-import Accordion from "react-bootstrap/Accordion";
-import { useContext, useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
+import Navbar from "../components/Navbar";
+import { Appcontext } from "../context/AppContext";
+import {useContext,useEffect,useState} from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import ProductNotFound from "../components/Makeup/productNotFound";
+import Card2 from "../components/Makeup/Card";
 import Card from "react-bootstrap/Card";
 import Placeholder from "react-bootstrap/Placeholder";
-import Footer from "../Footer";
-import { useNavigate } from "react-router-dom";
-import Card2 from "./Card";
-import { Appcontext } from "../../context/AppContext";
-import swal from "sweetalert";
-import ProductNotFound from "./productNotFound";
-import BreadCrumps from "./BreadCrumps";
-
-const makeupProdType = [
-  "Blush",
-  "Bronzer",
-  "Eyebrow",
-  "Eyeliner",
-  "Eyeshadow",
-  "Foundation",
-  "Lip liner",
-  "Lipstick",
-  "Mascara",
-  "Nail polish",
-];
-
-const makeupCategory = [
-  "Powder",
-  "Cream",
-  "Pencil",
-  "Liquid",
-  "Gel",
-  "Cream",
-  "Palette",
-  "Concealer",
-  "Contour",
-  "Mineral",
-  "Highlighter",
-  "Lipstick",
-  "Lip gloss",
-  "Lip stain",
-];
-
-const makeupFeature = [
-  "Vegan",
-  "Canadian",
-  "Natural",
-  "Gluten free",
-  "Non-gmo",
-  "Purpicks",
-  "Certclean",
-  "Ewg verified",
-  "Organic",
-  "Usda organic",
-  "Hypoallergenic",
-  "No talc",
-  "Ecocert",
-];
+import Accordion from "react-bootstrap/Accordion";
 
 const sortvalue = ["Price: Low To High", "Price: High To Low"];
 
-export default function FinalMakeupPage() {
-  const [sortV, setSortV] = useState("");
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  const {fParams,filterParams}=useContext(Appcontext);
-  const[type,setType]=useState(fParams.prod_type);
-  const[category,setCategory]=useState(fParams.prod_category);
-  const[feature,setFeature]=useState(fParams.feature);
-  const[filtereddata,setFiltereddata]=useState([]);
- 
-  useEffect(()=>{
-    setLoading(true);
-    const Returnfetchuser = () => {
+const makeupProdType = [
+    "Blush",
+    "Bronzer",
+    "Eyebrow",
+    "Eyeliner",
+    "Eyeshadow",
+    "Foundation",
+    "Lip liner",
+    "Lipstick",
+    "Mascara",
+    "Nail polish",
+  ];
+  
+  const makeupCategory = [
+    "Powder",
+    "Cream",
+    "Pencil",
+    "Liquid",
+    "Gel",
+    "Cream",
+    "Palette",
+    "Concealer",
+    "Contour",
+    "Mineral",
+    "Highlighter",
+    "Lipstick",
+    "Lip gloss",
+    "Lip stain",
+  ];
+  
+  const makeupFeature = [
+    "Vegan",
+    "Canadian",
+    "Natural",
+    "Gluten free",
+    "Non-gmo",
+    "Purpicks",
+    "Certclean",
+    "Ewg verified",
+    "Organic",
+    "Usda organic",
+    "Hypoallergenic",
+    "No talc",
+    "Ecocert",
+  ];
+
+export default function SearchResultsPage(){
+    const [sortV, setSortV] = useState("");
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const {fParams,filterParamsconst,searchInput,SettingInputEmpty}=useContext(Appcontext);
+    const[type,setType]=useState("Blush");
+    const[category,setCategory]=useState("");
+    const[feature,setFeature]=useState("");
+    const[filtereddata,setFiltereddata]=useState([]);
+    console.log(type,searchInput);
+
+    useEffect(()=>{
+      if(sortV=="Price: Low To High"){
+        setLoading(true);
+        let sorteddata=filtereddata.sort(function(a,b){
+          return(
+            Number(b.price)-Number(a.price)
+          )
+        })
+       
+        setFiltereddata(sorteddata);
+        setLoading(false);
+      }
+      if(sortV=="Price: High To Low"){
+        setLoading(true);
+        let sorteddata=filtereddata.sort(function(a,b){
+          return(
+            Number(a.price)-Number(b.price)
+          )
+        })
+       
+        setFiltereddata(sorteddata);
+        setLoading(false);
+      }
+     },[sortV])
+
+    useEffect(() => {
+      // 👇️ scroll to top on page load
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, [searchInput]);
+  
+
+    useEffect(()=>{
+        setLoading(true);
+        const Returnfetchuser = () => {
+             
+            return fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${searchInput}&product_category=${category}&product_tags=${feature}`).then((res) =>
+            res.json()
+          );
          
-        return fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&product_category=${category}&product_tags=${feature}`).then((res) =>
-        res.json()
-      );
+        };
+       
+        Returnfetchuser().then((res) => {
+          setTimeout(() => {
+            setFiltereddata(res);
+            setLoading(false);
+       
+          }, 1000);
+          
+         //  console.log(filtereddata);
+          
+          });
+    },[searchInput])
+   
+    useEffect(()=>{
+      setLoading(true);
+      const Returnfetchuser = () => {
+           
+          return fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}&product_category=${category}&product_tags=${feature}`).then((res) =>
+          res.json()
+        );
+       
+      };
      
-    };
-   
-    Returnfetchuser().then((res) => {
-      setTimeout(() => {
-        setFiltereddata(res);
-        setLoading(false)
-      }, 1000);
-      
-       console.log(filtereddata);
-      
-      });
-    console.log(type,category,feature);
-   
-  },[type,category,feature])
-  
- useEffect(()=>{
-  if(sortV=="Price: Low To High"){
-    setLoading(true);
-    let sorteddata=filtereddata.sort(function(a,b){
-      return(
-        Number(b.price)-Number(a.price)
-      )
-    })
-   
-    setFiltereddata(sorteddata);
-    setLoading(false);
-  }
-  if(sortV=="Price: High To Low"){
-    setLoading(true);
-    let sorteddata=filtereddata.sort(function(a,b){
-      return(
-        Number(a.price)-Number(b.price)
-      )
-    })
-   
-    setFiltereddata(sorteddata);
-    setLoading(false);
-  }
- },[sortV])
-  
-  return (
-    <>
-      <Navbar />
+      Returnfetchuser().then((res) => {
+        setTimeout(() => {
+          setFiltereddata(res);
+          setLoading(false);
+     
+        }, 1000);
+        
+       //  console.log(filtereddata);
+        
+        });
+     // console.log(type,category,feature);
+     
+    },[type,category,feature])
+    
+
+    return(
+        <>
+         <Navbar />
       <div style={{ width: "100%", height: "135px" }}></div>
-      <div>
-        <div
-          style={{
-            filter: "blur(8px)",
-            background:
-              "url(https://d32baadbbpueqt.cloudfront.net/Collection/6a68d77f-80b5-4860-9a4d-6005844c937d.jpg)",
-            webkitFilter: "blur(20px)",
-            width: "100%",
-            height: "270px",
-            display: "flex",
-            alignItems: "center",
-            backgroundPosition: "50%",
-            position: "absolute",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        ></div>
-        <img
-          src="https://d32baadbbpueqt.cloudfront.net/Collection/6a68d77f-80b5-4860-9a4d-6005844c937d.jpg"
-          alt=""
-          style={{ position: "relative", width: "979px", height: "270px" }}
-        />
-      </div>
-      <BreadCrumps name={"MakeUp"}/>
-      <div style={{ display: "flex", width: "95%", margin: "auto" }}>
+        <div style={{width:"100%",height:"19px",marginTop:"10px",marginBottom:"10px",fontSize:"13px",display:"flex",alignItems:"center",justifyContent:"left"}}>
+         <div style={{width:"20%",height:"19px",color:"#808080"}}>Search Results for {searchInput}</div>
+        </div>
+
+        <div style={{ display: "flex", width: "95%", margin: "auto" }}>
         <div style={{ width: "313px", height: "auto" }}>
           <div
             style={{
@@ -440,6 +446,8 @@ export default function FinalMakeupPage() {
         _______________________________________________________________________________________________________________________________________________________________________________
       </div>
       <Footer />
-    </>
-  );
+
+
+        </>
+    )
 }

@@ -7,6 +7,7 @@ import IfEmpty from "./IfEmpty";
 import { Appcontext } from "../../context/AppContext";
 import Card2 from "../Makeup/Card";
 import Card from "react-bootstrap/Card";
+import Footer from "../Footer";
 
 export default function FinalOrdersPage() {
   const navigate = useNavigate();
@@ -473,6 +474,8 @@ export default function FinalOrdersPage() {
           )}
         </div>
       </div>
+      <hr style={{marginTop:"70px"}} />
+      <Footer/>
     </>
   );
 }

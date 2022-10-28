@@ -31,6 +31,7 @@ export function Appcontextprovider({ children }) {
   const [address, setAddress] = useState([]);
   const [orders,setOrders]=useState([]);
   const [defaultAddress,setDefaultAddress]=useState({});
+  const [searchInput,setSearchInput]=useState("");
 
   const LoginUser = (userinfo) => {
     setLoginState({
@@ -87,6 +88,10 @@ export function Appcontextprovider({ children }) {
     setOrders(orderData)
   };
 
+  const SettingInputEmpty=(data)=>{
+    setSearchInput(data);
+  }
+
   return (
     <Appcontext.Provider
       value={{
@@ -107,7 +112,9 @@ export function Appcontextprovider({ children }) {
         defaultAddress,
         SettingDefaultAdd,
         orders,
-        ShowOrders
+        ShowOrders,
+        searchInput,
+        SettingInputEmpty
       }}
     >
       {children}

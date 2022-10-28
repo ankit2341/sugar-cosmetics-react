@@ -36,6 +36,31 @@ export default function FinalBrushesPage() {
   const [type, setType] = useState("Mascara");
   const [filtereddata, setFiltereddata] = useState([]);
 
+  useEffect(()=>{
+    if(sortV=="Price: Low To High"){
+      setLoading(true);
+      let sorteddata=filtereddata.sort(function(a,b){
+        return(
+          Number(b.price)-Number(a.price)
+        )
+      })
+     
+      setFiltereddata(sorteddata);
+      setLoading(false);
+    }
+    if(sortV=="Price: High To Low"){
+      setLoading(true);
+      let sorteddata=filtereddata.sort(function(a,b){
+        return(
+          Number(a.price)-Number(b.price)
+        )
+      })
+     
+      setFiltereddata(sorteddata);
+      setLoading(false);
+    }
+   },[sortV])
+
   useEffect(() => {
     setLoading(true);
     const Returnfetchuser = () => {
@@ -83,7 +108,7 @@ export default function FinalBrushesPage() {
         />
       </div>
       <BreadCrumps name={"Brushes"} />
-      <div style={{ display: "flex", width: "90%", margin: "auto" }}>
+      <div style={{ display: "flex", width: "95%", margin: "auto" }}>
         <div style={{ width: "313px", height: "auto" }}>
           <div
             style={{

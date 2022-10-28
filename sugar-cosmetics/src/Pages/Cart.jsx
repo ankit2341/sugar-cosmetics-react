@@ -19,6 +19,7 @@ export default function Cart() {
   const [total, setTotal] = useState();
   const [coupon, setCoupan] = useState("");
   const [couponapplied, setcouponapplied] = useState(false);
+  const [confetti,setConfetti]=useState(false);
 
   function checkCoupan() {
     if (coupon == "GOMSMD") {
@@ -44,12 +45,15 @@ export default function Cart() {
     ShowOrders(cart);
     swal({
       title: "Order Placed Successfully!",
-      text: "You can track your orders on orders page",
+      text: "You will be redirected! Thanks for Shopping with us! ",
       icon: "success",
       buttons: false,
     });
-
-   <Confetti width={"100%"} height={"100vh"} />;
+    setConfetti(true);
+    setTimeout(() => {
+      navigate("/user/orders")
+    }, 5000);
+   
   }
 
   useEffect(() => {
@@ -84,6 +88,21 @@ export default function Cart() {
       }
     });
   };
+
+  if(confetti==true){
+    return(
+      <>
+      <div style={{width:"750px",height:"100px",margin:"auto",marginTop:"40vh",position: "relative",animationName: "example",animationDuration: "2s", animationIterationCount: "infinite"}} >
+      <h1 style={{zIndex:"100",fontWeight:"bolder"}}>ORDER PLACED SUCCESSFULLY!</h1>
+      </div>
+    
+      <div style={{width:"100%",height:"100vh"}}>
+      <Confetti numberOfPieces={"1000"} colors={["#000","#FC2779","#212121","#757575"]} recycle={false} />
+      </div>
+      
+      </>
+    )
+  }
 
   if (cart.length == 0 || undefined) {
     return (

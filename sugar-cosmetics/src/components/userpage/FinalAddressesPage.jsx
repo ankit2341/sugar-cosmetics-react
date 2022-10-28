@@ -7,6 +7,7 @@ import IfEmpty2 from "./Ifempty2";
 import { Appcontext } from "../../context/AppContext";
 import MyVerticallyCenteredModal from "./addressverticalmodal";
 import swal from "sweetalert";
+import Footer from "../Footer";
 
 export default function FinalAddressPage() {
   const navigate = useNavigate();
@@ -691,6 +692,8 @@ export default function FinalAddressPage() {
           )}
         </div>
       </div>
+      <hr style={{marginTop:"70px"}} />
+      <Footer/>
     </>
   );
 }

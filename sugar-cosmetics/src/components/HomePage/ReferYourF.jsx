@@ -1,4 +1,5 @@
 import TitleForall from "./TitleForall";
+import {Link,useNavigate} from "react-router-dom";
 
 export default function ReferYourF() {
   return (
@@ -12,7 +13,7 @@ export default function ReferYourF() {
           marginTop: "20px",
         }}
       >
-        <img
+       <Link to={"/user/refer"}><img
           style={{
             borderRadius: "10px",
             width: "100%",
@@ -21,7 +22,7 @@ export default function ReferYourF() {
           }}
           src="https://d32baadbbpueqt.cloudfront.net/Homepage/8bfe8bb4-002d-4097-a773-6af33325a594.jpg"
           alt=""
-        />
+        /></Link> 
       </div>
     </>
   );

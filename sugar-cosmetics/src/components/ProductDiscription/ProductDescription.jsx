@@ -20,6 +20,12 @@ export default function ProductDiscription() {
   const [data, setdata] = useState([]);
   const { id } = useParams();
   console.log(id);
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }, [id]);
+
   useEffect(() => {
     function returnfetch() {
       return fetch(

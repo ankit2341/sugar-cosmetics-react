@@ -1,11 +1,17 @@
 import "../styles/Navbar.css";
 import { AlertDismissibleExample, NavbarInput, NavbarLoginRegister } from "./NavbarComponents/NavbarC";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { Appcontext } from "../context/AppContext";
 
 export default function Navbar() {
   const { cart } = useContext(Appcontext);
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  }, []);
+
   // const [colorChange, setColorchange] = useState(false);
 
   // const changeNavbarColor = () => {
@@ -167,10 +173,10 @@ export default function Navbar() {
           <Link className="dropdown" to="/Offers">
             Offers
           </Link>
-          <Link className="dropdown" to="/">
+          <a className="dropdown" target="_blank" href="https://www.google.com/search?q=sugar+stores&rlz=1C1NMEO_enIN1000IN1000&oq=sugar+stores&aqs=chrome..69i57j0i512j0i457i512j0i512l2j69i60l3.9855j0j7&sourceid=chrome&ie=UTF-8">
             Stores
-          </Link>
-          <Link className="dropdown" to="/">
+          </a>
+          <Link className="dropdown" to="/Gifting">
             Diwali Gifting
           </Link>
         </div>

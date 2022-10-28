@@ -52,4 +52,23 @@ body{
     margin-top: 30px;
     padding-bottom: 10px;
     flex-direction: column;
+   
 }
+@keyframes example {
+    0%{
+        color: #000;
+        opacity: 0;
+    }
+    50%{
+        color: #000;
+        opacity: 1;
+    }
+    50%{
+        color: #FC2779;
+        opacity: 1;
+    }
+    100%{
+        color: #FC2779;
+        opacity: 0;
+    }
+  }

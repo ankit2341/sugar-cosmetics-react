@@ -6,6 +6,7 @@ import IfEmpty from "./IfEmpty";
 import Card2 from "../Makeup/Card";
 import { Appcontext } from "../../context/AppContext";
 import swal from "sweetalert";
+import Footer from "../Footer";
 
 export default function FinalWishlistPage() {
   const navigate = useNavigate();
@@ -394,6 +395,8 @@ export default function FinalWishlistPage() {
           )}
         </div>
       </div>
+      <hr style={{marginTop:"70px"}} />
+      <Footer/>
     </>
   );
 }
