@@ -669,7 +669,7 @@ export default function ProductDiscription() {
                   }}
                   onClick={() => {
                     setDelivery(
-                      `Estimated delivery between Oct 25 - Oct 27 at ${pincode}`
+                      `Estimated delivery between 2 - 10 days at ${pincode}`
                     );
                   }}
                 >

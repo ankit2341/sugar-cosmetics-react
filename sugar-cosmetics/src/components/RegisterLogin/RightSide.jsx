@@ -9,6 +9,7 @@ import "../../styles/Home.css";
 import swal from "sweetalert";
 import axios from "axios";
 import { Appcontext } from "../../context/AppContext";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function RightSide() {
   const [data, setdata] = useState(false);
@@ -22,6 +23,7 @@ export default function RightSide() {
   const [email, setEmail] = useState("");
   const { Loginstate, LoginUser, SignUpUser } = useContext(Appcontext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // ------------------------------------------------function for captchaverfication invisible-----------------------------------
 
@@ -41,6 +43,7 @@ export default function RightSide() {
   // ----------------------------------------------function for---requestforotp-------------------------------------------------
 
   function requestotp() {
+    setLoading(true);
     let phoneNumber = `+91${mnumber}`;
     console.log(phoneNumber);
     checkmobile(mnumber);
@@ -55,11 +58,13 @@ export default function RightSide() {
           icon: "success",
           button: "OK",
         });
+        setLoading(false);
         setenterotp(true);
       })
       .catch((error) => {
         console.log(error);
         setenterotp(false);
+        setLoading(false);
         swal({
           title: "Error in Sending OTP",
           text: "Please check Entered Mobile Number or try after some time",
@@ -104,6 +109,7 @@ export default function RightSide() {
   // -----------------------------------------function to verify otp----------------------------------------------------------
 
   function verifyotp() {
+    setLoading(true);
     let confirmationResult = window.confirmationResult;
 
     confirmationResult
@@ -115,12 +121,14 @@ export default function RightSide() {
           title: "Mobile Number Verified",
           text: `+91${mnumber} is successfully verified`,
           icon: "success",
-          buttons:false,
+          buttons: false,
         });
 
         if (data == true) {
           navigate("/");
+          setLoading(false);
         } else {
+          setLoading(false);
           setsignup(true);
         }
         // ...
@@ -128,6 +136,7 @@ export default function RightSide() {
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
         // ...
+        setLoading(false);
         swal({
           title: "Wrong OTP !",
           text: "Entered OTP is wrong, please enter correct OTP",
@@ -160,10 +169,11 @@ export default function RightSide() {
     let username = `${firstName} ${lastName}`;
     let password = "";
     let id = mnumber;
+    setLoading(true);
 
     let userinfo = {
       username: username,
-      mobile: mnumber,
+      mnumber: mnumber,
       email: email,
       password: password,
     };
@@ -179,13 +189,15 @@ export default function RightSide() {
       .then((res) => {
         swal({
           title: "Signed Up",
-          text:"Signed up successfully enjoy shopping !",
+          text: "Signed up successfully enjoy shopping !",
           icon: "success",
         });
         LoginUser(userinfo);
+        setLoading(false);
         navigate("/");
       })
       .catch((err) => {
+        setLoading(false);
         swal({
           title: "Failed to Sign Up",
           icon: "error",
@@ -421,7 +433,11 @@ export default function RightSide() {
                 color: "#fff",
               }}
             >
-              SIGN ME UP
+              {loading ? (
+                 <Spinner animation="border" variant="light" size="sm" />
+              ) : (
+                "SIGN ME UP"
+              )}
             </button>
           </div>
         )}
@@ -625,7 +641,11 @@ export default function RightSide() {
                 color: "#fff",
               }}
             >
-              VALIDATE THIS
+             {loading ? (
+                <Spinner animation="border" variant="light" size="sm" />
+              ) : (
+                "VALIDATE THIS"
+              )}
             </button>
           </div>
         )}
@@ -810,7 +830,11 @@ export default function RightSide() {
               color: "#fff",
             }}
           >
-            SEND ME OTP
+           {loading ? (
+                 <Spinner animation="border" variant="light" size="sm" />
+              ) : (
+                "SEND ME OTP"
+              )}
           </button>
         </div>
       )}

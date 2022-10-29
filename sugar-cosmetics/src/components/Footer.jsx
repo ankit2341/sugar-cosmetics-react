@@ -58,11 +58,15 @@ export default function Footer() {
               height: "40px",
               backgroundColor: "#000",
             }}
-            onClick={()=>{swal({
+            onClick={()=>{footer_input!=""? swal({
               buttons:false,
               title:"Hurray! ",
               text:"We will let you know offers you should not miss",
               icon:"success"
+            }):swal({
+              buttons:false,
+              text:"Please enter E-mail field can't be empty!",
+              icon:"info"
             })}}
           >
             SUBSCRIBE
