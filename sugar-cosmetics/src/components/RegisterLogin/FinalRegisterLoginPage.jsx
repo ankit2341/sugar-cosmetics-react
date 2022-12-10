@@ -1,18 +1,11 @@
 import RightSide from "./RightSide";
 import SideImg from "./SideImg";
+import "../../styles/login.css";
 
 export default function FinalRegisterLoginPage() {
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          height: "96vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <div className="login_page">
         <SideImg />
         <RightSide />
       </div>

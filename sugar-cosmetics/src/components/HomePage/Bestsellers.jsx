@@ -16,7 +16,7 @@ export default function BestSellers() {
         </div>
       </div>
 
-      <div style={{ marginTop: "0px" }}>
+      <div className="main_bestsellers">
         <BestsellersCardCarousel BestSellersData={BestSellersData} />
       </div>
     </div>

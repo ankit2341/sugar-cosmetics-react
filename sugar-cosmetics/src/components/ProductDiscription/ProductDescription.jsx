@@ -109,7 +109,7 @@ export default function ProductDiscription() {
   return (
     <>
       <Navbar />
-      <div style={{ width: "100%", height: "135px" }}></div>
+      <div style={{ height: "50px" }}></div>
       <div className="breadcrumbs1">
         <span
           style={{ color: "gray", cursor: "pointer" }}
@@ -289,7 +289,7 @@ export default function ProductDiscription() {
             <div style={{ color: "lightgray", height: "5px" }}>
               ──────────────────────────────────────────────────────────────
             </div>
-            <div style={{ width: "683px", height: "92px" }}>
+            <div style={{ width: "683px", height: "92px" }} className="varient_sel" >
               <div
                 style={{
                   width: "683px",
@@ -358,10 +358,10 @@ export default function ProductDiscription() {
               </div>
             </div>
 
-            <div style={{ color: "lightgray", height: "5px" }}>
+            <div style={{ color: "lightgray", height: "5px" }} className="varient_sel">
               ──────────────────────────────────────────────────────────────
             </div>
-            <div style={{ width: "683px", height: "92px" }}>
+            <div style={{ width: "683px", height: "92px" }} className="varient_sel">
               <div
                 style={{
                   width: "683px",
@@ -430,10 +430,10 @@ export default function ProductDiscription() {
               </div>
             </div>
 
-            <div style={{ color: "lightgray", height: "5px" }}>
+            <div style={{ color: "lightgray", height: "5px" }} className="varient_sel">
               ──────────────────────────────────────────────────────────────
             </div>
-            <div style={{ width: "683px", height: "92px" }}>
+            <div style={{ width: "683px", height: "92px" }} className="varient_sel">
               <div
                 style={{
                   width: "683px",

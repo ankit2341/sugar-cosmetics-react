@@ -4,14 +4,7 @@ export default function ShukarSugar() {
   return (
     <>
       <TitleForall titlename={"SHUKR HAI,SUGAR HAI"} />
-      <div
-        style={{
-          width: "75%",
-          height: "450px",
-          margin: "auto",
-          marginTop: "20px",
-        }}
-      >
+      <div className="youtube_vid">
         <iframe
           width="100%"
           style={{ borderRadius: "10px" }}

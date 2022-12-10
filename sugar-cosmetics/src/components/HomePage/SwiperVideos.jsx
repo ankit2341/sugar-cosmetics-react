@@ -25,7 +25,6 @@ export default function SwiperVideos() {
     <>
       <Swiper
         effect={"coverflow"}
-        style={{ width: "80%", height: "450px", marginTop: "20px" }}
         grabCursor={true}
         centeredSlides={true}
         autoplay={true}

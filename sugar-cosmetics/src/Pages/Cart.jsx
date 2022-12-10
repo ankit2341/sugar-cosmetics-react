@@ -13,13 +13,13 @@ import Confetti from "react-confetti";
 
 export default function Cart() {
   const navigate = useNavigate();
-  const { cart, RemoveFromCart, defaultAddress, ShowOrders,Loginstate } =
+  const { cart, RemoveFromCart, defaultAddress, ShowOrders, Loginstate } =
     useContext(Appcontext);
   const [count, setCount] = useState(1);
   const [total, setTotal] = useState();
   const [coupon, setCoupan] = useState("");
   const [couponapplied, setcouponapplied] = useState(false);
-  const [confetti,setConfetti]=useState(false);
+  const [confetti, setConfetti] = useState(false);
 
   function checkCoupan() {
     if (coupon == "GOMSMD") {
@@ -35,12 +35,12 @@ export default function Cart() {
   }
 
   function addtoorders() {
-    if(Loginstate.isAuth==false){
-        return swal({
-            title:"Not Logged In!",
-            text:"It seems that you are not Logged in LogIn now and checkout!",
-            icon:"error"
-        })
+    if (Loginstate.isAuth == false) {
+      return swal({
+        title: "Not Logged In!",
+        text: "It seems that you are not Logged in LogIn now and checkout!",
+        icon: "error",
+      });
     }
     ShowOrders(cart);
     swal({
@@ -51,9 +51,8 @@ export default function Cart() {
     });
     setConfetti(true);
     setTimeout(() => {
-      navigate("/user/orders")
+      navigate("/user/orders");
     }, 5000);
-   
   }
 
   useEffect(() => {
@@ -89,26 +88,42 @@ export default function Cart() {
     });
   };
 
-  if(confetti==true){
-    return(
+  if (confetti == true) {
+    return (
       <>
-      <div style={{width:"750px",height:"100px",margin:"auto",marginTop:"40vh",position: "relative",animationName: "example",animationDuration: "2s", animationIterationCount: "infinite"}} >
-      <h1 style={{zIndex:"100",fontWeight:"bolder"}}>ORDER PLACED SUCCESSFULLY!</h1>
-      </div>
-    
-      <div style={{width:"100%",height:"100vh"}}>
-      <Confetti numberOfPieces={"1000"} colors={["#000","#FC2779","#212121","#757575"]} recycle={false} />
-      </div>
-      
+        <div
+          style={{
+            width: "750px",
+            height: "100px",
+            margin: "auto",
+            marginTop: "40vh",
+            position: "relative",
+            animationName: "example",
+            animationDuration: "2s",
+            animationIterationCount: "infinite",
+          }}
+        >
+          <h1 style={{ zIndex: "100", fontWeight: "bolder" }}>
+            ORDER PLACED SUCCESSFULLY!
+          </h1>
+        </div>
+
+        <div style={{ width: "100%", height: "100vh" }}>
+          <Confetti
+            numberOfPieces={"1000"}
+            colors={["#000", "#FC2779", "#212121", "#757575"]}
+            recycle={false}
+          />
+        </div>
       </>
-    )
+    );
   }
 
   if (cart.length == 0 || undefined) {
     return (
       <>
         <Navbar />
-        <div style={{ width: "100%", height: "135px" }}></div>
+        <div className="add_div" style={{ height: "50px" }}></div>
         <div className="breadcrumbs1">
           <span
             style={{ color: "gray", cursor: "pointer" }}
@@ -384,17 +399,19 @@ export default function Cart() {
                     }}
                   >
                     <div style={{ width: "64px", height: "48px" }}>
-                      <Link to={`/results/${el.id}`}><img
-                        src={el.api_featured_image}
-                        alt=""
-                        style={{
-                          width: "36px",
-                          cursor:"pointer",
-                          height: "48px",
-                          border: "1px solid #000",
-                          borderRadius: "3px",
-                        }}
-                      /></Link>
+                      <Link to={`/results/${el.id}`}>
+                        <img
+                          src={el.api_featured_image}
+                          alt=""
+                          style={{
+                            width: "36px",
+                            cursor: "pointer",
+                            height: "48px",
+                            border: "1px solid #000",
+                            borderRadius: "3px",
+                          }}
+                        />
+                      </Link>
                     </div>
                     <div
                       style={{
@@ -480,7 +497,7 @@ export default function Cart() {
                             borderBottomLeftRadius: "5px",
                           }}
                           onClick={() => {
-                            setCount(count - 1);
+                            setCount((prev) => prev - 1);
                             addingtotalqty(el.price);
                           }}
                         >
@@ -507,7 +524,7 @@ export default function Cart() {
                             borderBottomRightRadius: "5px",
                           }}
                           onClick={() => {
-                            setCount(count + 1);
+                            setCount((prev) => prev + 1);
                             addingtotalqty(el.price);
                           }}
                         >
@@ -813,7 +830,11 @@ export default function Cart() {
           }}
         >
           <p>
-            Delivering to - {defaultAddress.firstN + " " + defaultAddress.lastN}
+            Delivering to -{" "}
+            {defaultAddress.firstN != undefined &&
+            defaultAddress.lastN != undefined
+              ? defaultAddress.firstN + " " + defaultAddress.lastN
+              : "Login first"}
           </p>
         </div>
         <div

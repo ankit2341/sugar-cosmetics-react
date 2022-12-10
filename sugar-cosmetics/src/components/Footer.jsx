@@ -5,7 +5,7 @@ import { useState } from "react";
 import swal from "sweetalert";
 
 export default function Footer() {
-  const [footer_input,setfooter_input]=useState("");
+  const [footer_input, setfooter_input] = useState("");
 
   return (
     <>
@@ -20,7 +20,10 @@ export default function Footer() {
             "url(https://in.sugarcosmetics.com/desc-images/Rectangle_background.svg)",
         }}
       >
-        <a style={{textDecoration:"none",color:"#212121"}} href="https://www.google.com/search?q=sugar+cosmetics+&rlz=1C1NMEO_enIN1000IN1000&sxsrf=ALiCzsZZ0rszGELi5SXoAFm5WiPjMrufuQ%3A1666943136306&ei=oIhbY4ekEvaQseMP7be6oAs&ved=0ahUKEwiH9P-Lt4L7AhV2SGwGHe2bDrQQ4dUDCA8&uact=5&oq=sugar+cosmetics+&gs_lp=Egdnd3Mtd2l6uAED-AEBMgQQIxgnMgQQIxgnMgQQIxgnMggQABiABBixAzIFEAAYgAQyCBAAGIAEGLEDMgsQLhiABBjHARivATIIEAAYgAQYsQMyCBAAGIAEGMkDMgUQABiABMICChAAGEcY1gQYsAOQBgdItA5Q9wpY9wpwAngByAEAkAEAmAGOAaABjgGqAQMwLjHiAwQgTRgB4gMEIEEYAOIDBCBGGACIBgE&sclient=gws-wiz"  >
+        <a
+          style={{ textDecoration: "none", color: "#212121" }}
+          href="https://www.google.com/search?q=sugar+cosmetics+&rlz=1C1NMEO_enIN1000IN1000&sxsrf=ALiCzsZZ0rszGELi5SXoAFm5WiPjMrufuQ%3A1666943136306&ei=oIhbY4ekEvaQseMP7be6oAs&ved=0ahUKEwiH9P-Lt4L7AhV2SGwGHe2bDrQQ4dUDCA8&uact=5&oq=sugar+cosmetics+&gs_lp=Egdnd3Mtd2l6uAED-AEBMgQQIxgnMgQQIxgnMgQQIxgnMggQABiABBixAzIFEAAYgAQyCBAAGIAEGLEDMgsQLhiABBjHARivATIIEAAYgAQYsQMyCBAAGIAEGMkDMgUQABiABMICChAAGEcY1gQYsAOQBgdItA5Q9wpY9wpwAngByAEAkAEAmAGOAaABjgGqAQMwLjHiAwQgTRgB4gMEIEEYAOIDBCBGGACIBgE&sclient=gws-wiz"
+        >
           READ MORE ABOUT SUGAR COSMETICS
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,8 +51,12 @@ export default function Footer() {
         <div style={{ width: "50%", margin: "auto", borderRadius: "40px" }}>
           <input
             style={{ width: "80%", height: "40px", paddingLeft: "10px" }}
-            type="email" value={footer_input}
-            placeholder="Enter Email" onChange={(e)=>{setfooter_input(e.target.value)}}
+            type="email"
+            value={footer_input}
+            placeholder="Enter Email"
+            onChange={(e) => {
+              setfooter_input(e.target.value);
+            }}
           />
           <button
             style={{
@@ -58,16 +65,20 @@ export default function Footer() {
               height: "40px",
               backgroundColor: "#000",
             }}
-            onClick={()=>{footer_input!=""? swal({
-              buttons:false,
-              title:"Hurray! ",
-              text:"We will let you know offers you should not miss",
-              icon:"success"
-            }):swal({
-              buttons:false,
-              text:"Please enter E-mail field can't be empty!",
-              icon:"info"
-            })}}
+            onClick={() => {
+              footer_input != ""
+                ? swal({
+                    buttons: false,
+                    title: "Hurray! ",
+                    text: "We will let you know offers you should not miss",
+                    icon: "success",
+                  })
+                : swal({
+                    buttons: false,
+                    text: "Please enter E-mail field can't be empty!",
+                    icon: "info",
+                  });
+            }}
           >
             SUBSCRIBE
           </button>
@@ -79,18 +90,8 @@ export default function Footer() {
         />
 
         <div style={{ width: "100%", backgroundColor: "#000" }}>
-          <div
-            className="footersvg"
-            style={{
-              width: "20%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              backgroundColor: "#000",
-              margin: "auto",
-            }}
-          >
-            <a  href="https://www.facebook.com/trySUGAR/">
+          <div className="footersvg">
+            <a href="https://www.facebook.com/trySUGAR/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="gray"
@@ -160,6 +161,7 @@ export default function Footer() {
         </div>
 
         <img
+          className="footer_img"
           style={{ width: "100%" }}
           src="https://i.postimg.cc/fWBqXc9F/scfooterimg2.jpg"
           alt=""

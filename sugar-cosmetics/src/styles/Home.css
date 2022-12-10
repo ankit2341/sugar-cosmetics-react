@@ -1,85 +1,268 @@
-.BestSellers{
-    width:100%;
-    height: 608px;
-     background: url(https://media.sugarcosmetics.com/upload/homePageBackGroundTexture.jpg); 
+.BestSellers {
+  width: 100%;
+  height: 608px;
+  background: url(https://media.sugarcosmetics.com/upload/homePageBackGroundTexture.jpg);
 }
-.BestSellers1{
-    width:100%;
-    height: 608px;
-     background: url(https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png); 
-     margin-top: 60px;
+.BestSellers1 {
+  width: 100%;
+  height: 608px;
+  background: url(https://media.sugarcosmetics.com/upload/VTOBackgroungTexture.png);
+  margin-top: 60px;
 }
-.titleBS{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 30px;
-    width: 250px;
-    margin: auto;
-
+.titleBS {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 30px;
+  width: 250px;
+  margin: auto;
 }
-.titleBS1{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 40px;
-    width: 300px;
-    margin: auto;
-
+.titleBS1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+  width: 300px;
+  margin: auto;
 }
-.hr_tag{
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
+.hr_tag {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
 }
-.CardCrousel{
-    display: flex;
-    width: 85%;
-    margin: auto;
-    margin-top: 20px;
-    height: 480px;
-    align-items: flex-start;
-    justify-content: space-evenly;
+.CardCrousel {
+  display: flex;
+  width: 85%;
+  margin: auto;
+  margin-top: 20px;
+  height: 480px;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
-*{
-    font-family: "Roboto",sans-serif;
+* {
+  font-family: "Roboto", sans-serif;
 }
-.wishlist svg :hover{
-    fill: red;
+.card_bestseller {
+  width: 23%;
+  padding: 1%;
+  border-radius: 10px;
+  height: 420px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
 }
-.wishlist{
-    width:40px;
-    height:40px;
-    border-radius:5px;
-    border:2px solid black;
-    display:flex;
-    align-items:center;
-    justify-content:center
+.wishlist svg :hover {
+  fill: red;
+}
+.wishlist {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .swiper {
-    width: 300px;
-    height: 500px;
-  }
-  
-  .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
-  }
-  .footersvg svg :hover{
-       fill: #ffffff;
-  }
-  .inputnumber_otp::-webkit-outer-spin-button,
-  .inputnumber_otp::-webkit-inner-spin-button {
+  width: 300px;
+  height: 500px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+.footersvg svg :hover {
+  fill: #ffffff;
+}
+.inputnumber_otp::-webkit-outer-spin-button,
+.inputnumber_otp::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.inputnumber_otp{
-    -moz-appearance: textfield;
+.inputnumber_otp {
+  -moz-appearance: textfield;
+}
+#add_div {
+  width: 100%;
+  height: 135px;
+}
+.CardCrousel_Ipad {
+  display: none;
+}
+.CardCrousel_mobile {
+  display: none;
+}
+.hotdeals_ipad {
+  display: none;
+}
+.hotdeals_laptop {
+  display: block;
+}
+.youtube_vid {
+  width: 75%;
+  height: 450px;
+  margin: auto;
+  margin-top: 20px;
+}
+.mySwiper {
+  width: 80%;
+  height: 450px;
+  margin-top: 20px;
+}
+.THISORTHAT {
+  height: 440px;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.THISORTHAT img {
+  border-radius: 10px;
+  width: 49%;
+  height: 400px;
+  cursor: pointer;
+}
+.footersvg {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #000;
+  margin: auto;
+}
+.under_fixed_nav {
+  display: none;
+}
+@media screen and (max-width: 912px) {
+  #add_div {
+    display: none;
+  }
+  .under_fixed_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    position: fixed;
+    z-index: 1111;
+    background: #000;
+    left: 0;
+    right: 0;
+  }
+  .under_fixed_nav div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #f1f1f1;
+  }
+  .THISORTHAT {
+    height: 440px;
+    width: 100%;
+    flex-direction: column;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .THISORTHAT img {
+    border-radius: 10px;
+    width: 80%;
+    height: 215px;
+    cursor: pointer;
+  }
+  .mySwiper {
+    width: 90%;
+    height: 450px;
+    margin-top: 20px;
+  }
+  .youtube_vid {
+    width: 90%;
+    height: 450px;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .hotdeals_ipad {
+    display: block;
+  }
+  .hotdeals_laptop {
+    display: none;
+  }
+  .CardCrousel_mobile {
+    display: none;
+  }
+  .CardCrousel_Ipad {
+    display: block;
+  }
+  .card_bestseller {
+    width: 40%;
+    padding: 1%;
+    border-radius: 10px;
+    height: 420px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+  }
+
+  .bestseller_carousal {
+    display: none;
+  }
+  .carousal {
+    width: 100%;
+    height: 400px;
+  }
+  .carousal img {
+    width: 100%;
+    height: 400px;
+  }
+  .navbar_visible {
+    display: none;
+  }
+}
+@media screen and (max-width: 420px) {
+  .CardCrousel_mobile {
+    display: block;
+  }
+  .footersvg {
+    width: 80%;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #000;
+    margin: auto;
+  }
+  .mySwiper {
+    width: 100%;
+    height: 350px;
+    margin-top: 20px;
+  }
+  .footer_img {
+    display: none;
+  }
+  .youtube_vid {
+    width: 100%;
+    height: 450px;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .bestseller_carousal {
+    display: none;
+  }
+  .CardCrousel_Ipad {
+    display: none;
+  }
+  .card_bestseller {
+    width: 80%;
+    padding: 1%;
+    border-radius: 10px;
+    height: 420px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+  }
 }

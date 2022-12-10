@@ -3,20 +3,14 @@ import Card from "react-bootstrap/Card";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function CardCarousel(props) {
-  const { src1, text, price,prod_id } = props;
-  const navigate=useNavigate();
+  const { src1, text, price, prod_id } = props;
+  const navigate = useNavigate();
 
   return (
-    <Card
-      style={{
-        width: "23%",
-        padding: "1%",
-        borderRadius: "10px",
-        height: "420px",
-        boxShadow: "0 2px 5px rgb(0 0 0 / 10%)",
-      }}
-    >
-      <Link to={`/results/${prod_id}`}><Card.Img variant="top" height="200px" src={src1} /></Link>
+    <Card className="card_bestseller">
+      <Link to={`/results/${prod_id}`}>
+        <Card.Img variant="top" height="200px" src={src1} />
+      </Link>
       <Card.Body>
         <Card.Text color="#000">
           <p style={{ fontSize: "12px" }}>{text}</p>
@@ -41,7 +35,12 @@ function CardCarousel(props) {
             height: "40px",
           }}
         >
-          <div className="wishlist" onClick={()=>{navigate(`/results/${prod_id}`)}}>
+          <div
+            className="wishlist"
+            onClick={() => {
+              navigate(`/results/${prod_id}`);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#000"
@@ -61,7 +60,9 @@ function CardCarousel(props) {
               backgroundColor: "#000",
               borderRadius: "8px",
             }}
-            onClick={()=>{navigate(`/results/${prod_id}`)}}
+            onClick={() => {
+              navigate(`/results/${prod_id}`);
+            }}
           >
             SHOP NOW
           </button>

@@ -14,6 +14,7 @@ function ControlledCarousel() {
     <>
       <Carousel
         style={{ marginTop: "00px", positon: "static" }}
+        className="carousal"
         interval={2000}
         activeIndex={index}
         onSelect={handleSelect}

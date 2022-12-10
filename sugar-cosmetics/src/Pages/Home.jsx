@@ -17,6 +17,8 @@ import Toppicks from "../components/HomePage/Toppicks";
 import Gifting from "../components/HomePage/Gifting";
 import { useContext, useState } from "react";
 import { Appcontext } from "../context/AppContext";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 let Hotdealsdata = [
   "https://d32baadbbpueqt.cloudfront.net/Homepage/ee7aec73-2712-4b13-b979-8af7326e6219.jpg",
@@ -39,8 +41,11 @@ export default function Home() {
   if (loading) {
     return (
       <>
-        <Navbar />
-        <div style={{width:"100%",height:"135px"}}></div>
+        <div className="navbar_visible">
+          <Navbar />
+        </div>
+
+        <div id="add_div"></div>
         <div
           style={{
             width: "100%",
@@ -110,7 +115,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div style={{width:"100%",height:"135px"}}></div>
+      <div id="add_div"></div>
       <ControlledCarousel />
       <BestSellers />
       <TitleForall titlename={"HOT DEALS"} />
