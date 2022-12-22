@@ -109,7 +109,7 @@ export default function ProductDiscription() {
   return (
     <>
       <Navbar />
-      <div style={{ height: "50px" }}></div>
+      <div id="add_div"></div>
       <div className="breadcrumbs1">
         <span
           style={{ color: "gray", cursor: "pointer" }}
