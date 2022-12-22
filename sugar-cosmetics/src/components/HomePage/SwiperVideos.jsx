@@ -103,7 +103,7 @@ export default function SwiperVideos() {
             initialSlide="2"
             grabCursor={true}
             modules={[EffectCards]}
-            className="mySwiper"
+            className="mySwiper_1"
           >
             <SwiperSlide>
               <video width="750" height="500" controls>
