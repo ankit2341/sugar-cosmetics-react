@@ -72,7 +72,7 @@ export default function MyVerticallyCenteredModal(props) {
             <Form.Group as={Col}>
               <Form.Control
                 type="number"
-                placeholder="Phone Number"
+                placeholder="Enter 10 digit Phone Number to save and continue"
                 value={mnumber}
                 className="inputnumber_otp"
                 onChange={(e) => setMnumber(e.target.value)}
